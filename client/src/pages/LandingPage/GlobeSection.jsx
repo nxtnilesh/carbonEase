@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom"; // Import Link from react-router-dom
 import { cn } from "@/lib/utils";
+import { ArrowRight, DollarSign, ShoppingCart } from "lucide-react";
 export function GlobeSection() {
   return (
     <section className="relative flex justify-center min-h-[90vh] px-6 md:px-40 md:pb-40 overflow-hidden ">
@@ -15,9 +16,6 @@ export function GlobeSection() {
           Trade Carbon Credits & Renewable Energy Transparently with
           <span className="text-brandMainColor"> CarbonEase!</span>
         </h1>
-        {/* <Badge className="text-sm sm:text-base text-white dark:text-gray-200 mt-4 mx-auto max-w-xl">
-          "A marketplace to buy, sell, and offset carbon footprints seamlessly."
-        </Badge> */}
       </div>
 
       {/* Globe animation */}
@@ -27,18 +25,23 @@ export function GlobeSection() {
         <Link to="/about">
           {/* Link to "About Us" page */}
           <PulsatingButton className="shadow-2xl bg-white">
-            <span className="whitespace-pre-wrap text-center text-sm font-medium leading-none tracking-tight text-brandMainColor lg:text-lg">
-              Join Now
+            <span className="flex items-center gap-2 whitespace-pre-wrap text-center text-sm font-medium leading-none tracking-tight text-brandMainColor lg:text-lg">
+              {/* Arrow icon */}
+              <ShoppingCart className="w-5 h-5 text-brandMainColor" />{" "}
+              {/* Shopping cart icon */}
+              Buy Carbon Credits
+              <ArrowRight className="w-5 h-5 text-brandMainColor" />{" "}
             </span>
           </PulsatingButton>
         </Link>
         <Link to="/calculator">
           {/* Link to "Credits Calculator" page */}
-          <button
-            variant="outline"
-            className="whitespace-pre-wrap text-center text-sm font-medium leading-none tracking-tight text-brandMainColor lg:text-lg border-2 border-brandMainColor px-4 py-2 rounded-md bg-white "
-          >
-            Learn More
+          <button className="flex items-center justify-center gap-2 whitespace-pre-wrap text-center text-sm font-medium leading-none tracking-tight text-brandMainColor lg:text-lg border-2 border-brandMainColor px-4 py-2 rounded-md bg-white hover:bg-green-100 transition-all duration-200">
+            <DollarSign className="w-5 h-5 text-brandMainColor" />{" "}
+            {/* Dollar icon */}
+            Sell your Credit
+            <ArrowRight className="w-5 h-5 text-brandMainColor" />{" "}
+            {/* Arrow icon */}
           </button>
         </Link>
       </div>
