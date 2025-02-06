@@ -14,7 +14,12 @@ import Footer from "./components/common/Footer";
 import DashboardLayout from "./pages/SellerDashboar";
 import DataForm from "./pages/SellerPages/PopupForm";
 import ListingsPage from "./pages/SellerPages/AllListings";
-import SellerDashboard from "./pages/SellerPages/Dashboard";
+import SellerDashboard from "./pages/SellerPages/SellerDashboard";
+import ComingSoon from "./pages/comingsoon";
+import BuyerDashboard from "./pages/BuyerPages/BuyerDashboard";
+import SellerDashboardLayout from "./pages/SellerDashboar";
+import BuyerDashboardLayout from "./pages/BuyerDashboard";
+import Marketplace from "./pages/BuyerPages/Marketplace";
 
 const App = () => {
   return (
@@ -36,10 +41,14 @@ const App = () => {
                 path="/calculator"
                 element={<CarbonEmissionCalculator />}
               />
-              <Route path="/seller" element={<DashboardLayout />} />
+              <Route path="/seller" element={<SellerDashboardLayout />} />
+              <Route path="/buyer" element={<BuyerDashboardLayout />} />
               <Route path="/form" element={<DataForm />} />
               <Route path="/listings" element={<ListingsPage />} />
               <Route path="/seller-dashboard" element={<SellerDashboard />} />
+              <Route path="/buyer-dashboard" element={<BuyerDashboard/>} />
+              <Route path="/coming" element={<ComingSoon />} />
+              <Route path="/market" element={<Marketplace />} />
             </Route>
 
             {/* Protected Routes - Only for authenticated users */}

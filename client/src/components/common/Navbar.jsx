@@ -31,6 +31,9 @@ const Navbar = () => {
             <Link to="/seller">
               <Button variant="outline">Seller</Button>
             </Link>
+            <Link to="/buyer">
+              <Button variant="outline">Buyer</Button>
+            </Link>
             <Link to="/login">
               <Button variant="outline">Login</Button>
             </Link>
