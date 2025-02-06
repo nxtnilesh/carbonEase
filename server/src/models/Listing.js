@@ -1,13 +1,13 @@
 import mongoose from "mongoose";
 
 const CarbonCreditSchema = new mongoose.Schema({
-  title: { type: String, required: true },
-  description: { type: String, required: true },
-  seller: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
-  quantity: { type: Number, required: true, min: 1 },
-  pricePerCredit: { type: Number, required: true, min: 0 },
-  totalPrice: { type: Number, required: true, min: 0 },
-  location: { type: String, required: true },
+  title: { type: String },
+  description: { type: String },
+  seller: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+  quantity: { type: Number, min: 1 },
+  pricePerCredit: { type: Number, min: 0 },
+  totalPrice: { type: Number, min: 0 },
+  location: { type: String },
   projectType: {
     type: String,
     enum: [
@@ -17,13 +17,11 @@ const CarbonCreditSchema = new mongoose.Schema({
       "Agriculture",
       "Others",
     ],
-    required: true,
   },
   verification: {
     verifiedBy: {
       type: String,
       enum: ["VCS", "Gold Standard", "CDM", "Others"],
-      required: true,
     },
     certificateUrl: { type: String, required: false },
   },

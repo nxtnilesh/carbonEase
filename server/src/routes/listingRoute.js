@@ -11,7 +11,7 @@ import {
 const router = express.Router();
 
 // ✅ Create a new carbon credit listing
-router.post("/", createListing);
+router.post("/post", createListing);
 
 // ✅ Get all carbon credit listings
 router.get("/", getListings);

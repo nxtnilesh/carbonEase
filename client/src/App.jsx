@@ -8,6 +8,8 @@ import Profile from "./pages/Profile";
 import { AuthProvider } from "./context/AuthContext";
 import AboutUs from "./pages/Aboutus";
 import CarbonEmissionCalculator from "./pages/Calculator";
+import DashboardLayout from "./pages/SellerDashboar";
+import DataForm from "./pages/SellerPages/PopupForm";
 
 const App = () => {
   return (
@@ -21,6 +23,8 @@ const App = () => {
             <Route path="/login" element={<Login />} />
             <Route path="/about" element={<AboutUs />} />
             <Route path="/calculator" element={<CarbonEmissionCalculator />} />
+            <Route path="/seller" element={<DashboardLayout />} />
+            <Route path="/form" element={<DataForm />} />
           </Route>
 
           {/* Protected Routes - Only for authenticated users */}
