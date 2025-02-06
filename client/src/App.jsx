@@ -20,34 +20,39 @@ const App = () => {
   return (
     <AuthProvider>
       <Router>
-        <Navbar />
-        <Routes>
-          {/* Public Routes - Accessible to non-authenticated users */}
-          <Route element={<PublicRoute />}>
-            <Route path="/" element={<LandingPage />} />
+        <div className="flex flex-col min-h-screen">
+          <Navbar />
+          <Routes>
+            {/* Public Routes - Accessible to non-authenticated users */}
+            <Route element={<PublicRoute />}>
+              <Route path="/" element={<LandingPage />} />
 
-            {/* Auth routes */}
-            <Route path="/register" element={<Register />} />
-            <Route path="/verify-otp" element={<VerifyOTP />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/about" element={<AboutUs />} />
-            <Route path="/calculator" element={<CarbonEmissionCalculator />} />
-            <Route path="/seller" element={<DashboardLayout />} />
-            <Route path="/form" element={<DataForm />} />
-            <Route path="/listings" element={<ListingsPage />} />
-            <Route path="/seller-dashboard" element={<SellerDashboard />} />
-          </Route>
+              {/* Auth routes */}
+              <Route path="/register" element={<Register />} />
+              <Route path="/verify-otp" element={<VerifyOTP />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/about" element={<AboutUs />} />
+              <Route
+                path="/calculator"
+                element={<CarbonEmissionCalculator />}
+              />
+              <Route path="/seller" element={<DashboardLayout />} />
+              <Route path="/form" element={<DataForm />} />
+              <Route path="/listings" element={<ListingsPage />} />
+              <Route path="/seller-dashboard" element={<SellerDashboard />} />
+            </Route>
 
-          {/* Protected Routes - Only for authenticated users */}
-          <Route element={<ProtectedRoute />}>
-            <Route path="/profile" element={<Profile />} />
-          </Route>
+            {/* Protected Routes - Only for authenticated users */}
+            <Route element={<ProtectedRoute />}>
+              <Route path="/profile" element={<Profile />} />
+            </Route>
 
-          {/* Default Route */}
-          <Route path="*" element={<Login />} />
-        </Routes>
+            {/* Default Route */}
+            <Route path="*" element={<Login />} />
+          </Routes>
+        </div>
+        <Footer />
       </Router>
-      <Footer />
     </AuthProvider>
   );
 };

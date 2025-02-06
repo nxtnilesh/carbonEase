@@ -1,6 +1,6 @@
 import {
-  BarChart,
-  Bar,
+  LineChart,
+  Line,
   XAxis,
   YAxis,
   CartesianGrid,
@@ -22,26 +22,13 @@ const data = [
   { year: "2023", emissions: 37.0 },
 ];
 
-const COLORS = [
-  "#0088FE",
-  "#00C49F",
-  "#FFBB28",
-  "#FF8042",
-  "#A28DFF",
-  "#FF6384",
-  "#36A2EB",
-  "#4BC0C0",
-  "#9966FF",
-  "#FF9F40",
-];
-
 const StatsSection = () => {
   return (
-    <section className="width flex flex-col items-center w-full py-8">
+    <section className="flex flex-col items-center w-full py-8">
       <div className="flex flex-col items-center w-full h-[300px]">
-        <h2 className="text-xl font-bold mb-4 title">Global CO₂ Emissions by Year</h2>
+        <h2 className="text-xl font-bold mb-4">Global CO₂ Emissions by Year</h2>
         <ResponsiveContainer width="100%" height="100%">
-          <BarChart
+          <LineChart
             data={data}
             margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
           >
@@ -59,20 +46,31 @@ const StatsSection = () => {
               labelFormatter={(label) => `Year: ${label}`}
             />
             <Legend />
-            <Bar dataKey="emissions" fill="#8884d8" barSize={50} />
-          </BarChart>
+            <Line
+              type="monotone"
+              dataKey="emissions"
+              stroke="#5CB338"
+              strokeWidth={3}
+              dot={{ r: 4, fill: "#4A8E2B" }}
+            />
+          </LineChart>
         </ResponsiveContainer>
       </div>
       <div className="flex-1 w-full mt-8 p-4 bg-gray-100 rounded-md shadow-md">
         <h3 className="text-lg font-semibold">About the Graph</h3>
         <p className="text-sm text-gray-700 mt-2">
-          This graph displays global carbon dioxide (CO₂) emissions from the year 2000 to 2023. The emissions are measured in billion metric tons and are used to track the increasing concentration of greenhouse gases in the atmosphere.
+          This graph displays global carbon dioxide (CO₂) emissions from the year 2000 to 2023.
+          The emissions are measured in billion metric tons and are used to track the increasing
+          concentration of greenhouse gases in the atmosphere.
         </p>
         <p className="text-sm text-gray-700 mt-2">
-          In a carbon credit trading platform, such data helps measure the impact of emission reduction efforts. Users can buy or sell carbon credits, which represent the reduction or removal of one metric ton of CO₂ from the atmosphere, in order to offset their carbon footprint.
+          In a carbon credit trading platform, such data helps measure the impact of emission reduction
+          efforts. Users can buy or sell carbon credits, which represent the reduction or removal of one
+          metric ton of CO₂ from the atmosphere, in order to offset their carbon footprint.
         </p>
         <p className="text-sm text-gray-700 mt-2">
-          Understanding historical emission trends is essential for companies and individuals in the marketplace to make informed decisions regarding their carbon offset strategies.
+          Understanding historical emission trends is essential for companies and individuals in the
+          marketplace to make informed decisions regarding their carbon offset strategies.
         </p>
       </div>
     </section>
