@@ -6,6 +6,8 @@ import VerifyOTP from "./pages/VerifyOTP";
 import Login from "./pages/Login";
 import Profile from "./pages/Profile";
 import { AuthProvider } from "./context/AuthContext";
+import AboutUs from "./pages/Aboutus";
+import CarbonEmissionCalculator from "./pages/Calculator";
 
 const App = () => {
   return (
@@ -17,6 +19,8 @@ const App = () => {
             <Route path="/register" element={<Register />} />
             <Route path="/verify-otp" element={<VerifyOTP />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/about" element={<AboutUs />} />
+            <Route path="/calculator" element={<CarbonEmissionCalculator />} />
           </Route>
 
           {/* Protected Routes - Only for authenticated users */}
