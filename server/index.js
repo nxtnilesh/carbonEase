@@ -9,6 +9,12 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+// import routes
+
+import userRoute from "./src/routes/userRoute.js";
+
+app.use(userRoute);
+
 const PORT = process.env.PORT || 3000;
 connect()
   .then(
@@ -17,4 +23,3 @@ connect()
     })
   )
   .catch((err) => logger.error("MongoDB connect error", err));
-
