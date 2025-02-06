@@ -21,6 +21,12 @@ app.use(express.json());
 import userRoutes from "./src/routes/authRoute.js";
 import carbonCreditRoutes from "./src/routes/listingRoute.js";
 
+app.use((req, res, next) => {
+  logger.info(`Received ${req.method} request to ${req.url}`);
+  logger.info(`Request body, ${req.body}`);
+  next();
+});
+
 app.use("/api/auth", userRoutes);
 app.use("/api/credits", carbonCreditRoutes);
 
