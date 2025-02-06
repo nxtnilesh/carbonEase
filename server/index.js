@@ -18,11 +18,10 @@ app.use(cors());
 app.use(express.json());
 
 // import routes
-
-import userRoute from "./src/routes/userRoute.js";
+import userRoutes from "./src/routes/authRoute.js";
 import carbonCreditRoutes from "./src/routes/listingRoute.js";
 
-app.use("/api/auth", userRoute);
+app.use("/api/auth", userRoutes);
 app.use("/api/credits", carbonCreditRoutes);
 
 // Start Server

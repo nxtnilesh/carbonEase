@@ -5,6 +5,7 @@ import {
   getListingById,
   updateListing,
   deleteListing,
+  filterListings
 } from "../controllers/listingController.js";
 
 const router = express.Router();
