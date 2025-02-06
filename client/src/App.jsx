@@ -11,6 +11,10 @@ import CarbonEmissionCalculator from "./pages/Calculator";
 import Navbar from "./components/common/Navbar";
 import LandingPage from "./pages/LandingPage";
 import Footer from "./components/common/Footer";
+import DashboardLayout from "./pages/SellerDashboar";
+import DataForm from "./pages/SellerPages/PopupForm";
+import ListingsPage from "./pages/SellerPages/AllListings";
+import SellerDashboard from "./pages/SellerPages/Dashboard";
 
 const App = () => {
   return (
@@ -28,6 +32,10 @@ const App = () => {
             <Route path="/login" element={<Login />} />
             <Route path="/about" element={<AboutUs />} />
             <Route path="/calculator" element={<CarbonEmissionCalculator />} />
+            <Route path="/seller" element={<DashboardLayout />} />
+            <Route path="/form" element={<DataForm />} />
+            <Route path="/listings" element={<ListingsPage />} />
+            <Route path="/seller-dashboard" element={<SellerDashboard />} />
           </Route>
 
           {/* Protected Routes - Only for authenticated users */}
