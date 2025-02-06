@@ -14,7 +14,8 @@ import Footer from "./components/common/Footer";
 import DashboardLayout from "./pages/SellerDashboar";
 import DataForm from "./pages/SellerPages/PopupForm";
 import ListingsPage from "./pages/SellerPages/AllListings";
-import SellerDashboard from "./pages/SellerPages/Dashboard";
+import SellerDashboard from "./pages/SellerPages/SellerDashboard";
+import ComingSoon from "./pages/comingsoon";
 
 const App = () => {
   return (
@@ -40,6 +41,7 @@ const App = () => {
               <Route path="/form" element={<DataForm />} />
               <Route path="/listings" element={<ListingsPage />} />
               <Route path="/seller-dashboard" element={<SellerDashboard />} />
+              <Route path="/coming" element={<ComingSoon />} />
             </Route>
 
             {/* Protected Routes - Only for authenticated users */}

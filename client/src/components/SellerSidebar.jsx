@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+// import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom"; // Import from react-router-dom
 import { BarChart3, ListChecks, PlusCircle, ShoppingCart, DollarSign, MessageSquare, Settings } from "lucide-react";
 
@@ -7,13 +7,13 @@ const navigation = [
   { name: "Dashboard Overview", href: "/seller-dashboard", icon: BarChart3 },
   { name: "Manage Listings", href: "/listings", icon: ListChecks },
   { name: "Create New Listing", href: "/form", icon: PlusCircle },
-  { name: "Orders & Transactions", href: "/dashboard/orders", icon: ShoppingCart },
-  { name: "Earnings & Payouts", href: "/dashboard/earnings", icon: DollarSign },
-  { name: "Messages & Notifications", href: "/dashboard/messages", icon: MessageSquare },
-  { name: "Profile & Settings", href: "/dashboard/settings", icon: Settings },
+  { name: "Orders & Transactions", href: "/coming", icon: ShoppingCart },
+  { name: "Earnings & Payouts", href: "/coming", icon: DollarSign },
+  { name: "Messages & Notifications", href: "/coming", icon: MessageSquare },
+  // { name: "Profile & Settings", href: "/coming", icon: Settings },
 ];
 
-export function Sidebar() {
+export function SellerSidebar() {
   const location = useLocation(); // React Router Hook to get current path
 
   return (
