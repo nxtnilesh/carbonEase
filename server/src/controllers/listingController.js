@@ -32,6 +32,34 @@ export const getListingById = async (req, res) => {
     }
 };
 
+// ✅ Get filtered listings
+export const filterListings = async (req, res) => {
+    try {
+        const { projectType, status, location, minPrice, maxPrice, minQuantity, maxQuantity, verifiedBy } = req.query;
+
+        // Create a filter object dynamically
+        let filter = {};
+
+        if (projectType) filter.projectType = projectType;
+        if (status) filter.status = status;
+        // if (location) filter.location = location;
+        // if (verifiedBy) filter["verification.verifiedBy"] = verifiedBy;
+        if (minPrice || maxPrice) filter.pricePerCredit = {};
+        if (minPrice) filter.pricePerCredit.$gte = Number(minPrice);
+        if (maxPrice) filter.pricePerCredit.$lte = Number(maxPrice);
+        if (minQuantity || maxQuantity) filter.quantity = {};
+        if (minQuantity) filter.quantity.$gte = Number(minQuantity);
+        if (maxQuantity) filter.quantity.$lte = Number(maxQuantity);
+
+        // Fetch listings based on filters
+        const listings = await CarbonCredit.find(filter);
+        res.status(200).json(listings);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};
+
+
 // ✅ Update a listing
 export const updateListing = async (req, res) => {
     try {

@@ -18,6 +18,9 @@ router.get("/", getListings);
 // ✅ Get a specific carbon credit listing by ID
 router.get("/:id", getListingById);
 
+// ✅ Filter API to filter listings based on the given parameters
+router.get("/filter", filterListings);
+
 // ✅ Update a carbon credit listing
 router.put("/:id", updateListing);
 
