@@ -1,11 +1,9 @@
-"use client"
-
 import { useState } from "react"
-import { Button } from "@shadcn/ui/button"
-import { Input } from "@shadcn/ui/input"
-import { Label } from "@shadcn/ui/label"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import { Button } from "@/components/ui/button"
+import { Label } from "@/components/ui/label"
+import { Input } from "@/components/ui/input"
 
 const emissionFactors = {
   electricity: 0.5, // kg CO2/kWh
