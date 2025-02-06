@@ -1,6 +1,5 @@
 import { AnimatedList } from "@/components/animated-list";
 import { cn } from "@/lib/utils";
-
 import {
   DollarSign,
   UserPlus,
@@ -15,92 +14,80 @@ const notifications = [
   {
     name: "Transparent Trading",
     description: "Powered by blockchain for fraud-free transactions.",
-    // time: "Just now",
-    icon: <ShieldCheck size={20} />,
+    icon: <ShieldCheck size={24} className="text-white" />,
     color: "#4CAF50",
   },
   {
     name: "Emission Calculator",
     description: "Estimate & offset your carbon footprint in minutes.",
-    // time: "5m ago",
-    icon: <Leaf size={20} />,
+    icon: <Leaf size={24} className="text-white" />,
     color: "#009688",
   },
   {
     name: "Certified Carbon Credits",
     description: "Verified listings from authentic providers.",
-    // time: "10m ago",
-    icon: <DollarSign size={20} />,
+    icon: <DollarSign size={24} className="text-white" />,
     color: "#FFB300",
   },
   {
     name: "Gamification & Rewards",
     description: "Earn rewards for eco-friendly actions.",
-    // time: "20m ago",
-    icon: <MessageCircle size={20} />,
+    icon: <MessageCircle size={24} className="text-white" />,
     color: "#FF5722",
   },
   {
     name: "Geo-Mapping of Sellers",
     description: "Find renewable energy sources near you.",
-    // time: "30m ago",
-    icon: <MapPin size={20} />,
+    icon: <MapPin size={24} className="text-white" />,
     color: "#3F51B5",
   },
   {
     name: "Multiple Payment Options",
     description: "Pay via cards, crypto, or bank transfers.",
-    // time: "45m ago",
-    icon: <CreditCard size={20} />,
+    icon: <CreditCard size={24} className="text-white" />,
     color: "#673AB7",
   },
 ];
 
-const Notification = ({ name, description, icon, color, time }) => {
+const Notification = ({ name, description, icon, color }) => {
   return (
-    <figure
-      className={cn(
-        "relative mx-auto min-h-fit w-full max-w-[400px] cursor-pointer overflow-hidden rounded-2xl p-4",
-        "transition-all duration-200 ease-in-out hover:scale-[103%]",
-        "bg-white shadow-md dark:bg-gray-800 dark:text-white"
-      )}
-    >
-      <div className="flex flex-row items-center gap-3">
-        <div
-          className="flex size-10 items-center justify-center rounded-2xl"
-          style={{ backgroundColor: color }}
-        >
-          <span className="text-lg">{icon}</span>
-        </div>
-        <div className="flex flex-col overflow-hidden">
-          <figcaption className="flex flex-row items-center whitespace-pre text-lg font-medium">
-            <span className="text-sm sm:text-lg">{name}</span>
-            <span className="mx-1">·</span>
-            <span className="text-xs text-gray-500">{time}</span>
-          </figcaption>
-          <p className="text-sm font-normal text-gray-600 dark:text-gray-300">
-            {description}
-          </p>
-        </div>
+    <div className="width flex flex-col items-center p-6 bg-white dark:bg-gray-900 rounded-xl shadow-lg transition-all duration-200 hover:scale-105">
+      <div
+        className="flex items-center justify-center w-14 h-14 rounded-full"
+        style={{ backgroundColor: color }}
+      >
+        {icon}
       </div>
-    </figure>
+      <h3 className="mt-4 text-lg font-semibold text-gray-800 dark:text-white text-center">
+        {name}
+      </h3>
+      <p className="mt-2 text-sm text-gray-600 dark:text-gray-300 text-center">
+        {description}
+      </p>
+    </div>
   );
 };
 
 export function FeatureSection({ className }) {
   return (
-    <div
+    <section
       className={cn(
-        "relative flex h-auto w-full flex-col overflow-hidden rounded-lg border bg-background p-6 md:shadow-xl",
+        "relative w-full py-12 px-6 md:px-16 bg-background",
         className
       )}
     >
-      <h1 className="text-center p-4 title">Key Features Section (Why Choose CarbonEase?) </h1>
-      <AnimatedList>
+      <h1 className="text-3xl md:text-4xl font-semibold text-center text-green-600">
+        Why Choose CarbonEase?
+      </h1>
+      <p className="mt-3 text-center text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+        Explore key features that make our platform the best choice for sustainable and transparent carbon credit trading.
+      </p>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-10">
         {notifications.map((item, idx) => (
           <Notification {...item} key={idx} />
         ))}
-      </AnimatedList>
-    </div>
+      </div>
+    </section>
   );
 }

@@ -24,7 +24,7 @@ const data = [
 
 const StatsSection = () => {
   return (
-    <section className="flex flex-col items-center w-full py-8">
+    <section className="width flex flex-col items-center w-full py-8">
       <div className="flex flex-col items-center w-full h-[300px]">
         <h2 className="text-xl font-bold mb-4">Global CO₂ Emissions by Year</h2>
         <ResponsiveContainer width="100%" height="100%">

@@ -1,15 +1,17 @@
 import { Link } from "react-router-dom";
 import { Button } from "../ui/button";
 import { useAuth } from "@/context/AuthContext";
+import logo from "../../../public/logo.png";
 import { brandName } from "../../constant/global";
 const Navbar = () => {
   const { user, logoutUser } = useAuth();
 
   return (
-    <nav className="bg-white shadow-md p-2 px-5  flex justify-between items-center min-h-[10vh] ">
+    <nav className="bg-gray-50 shadow-md p-2 px-5  flex justify-between items-center min-h-[10vh] ">
       {/* Logo */}
       <Link to="/" className="text-xl font-bold text-gray-800">
-        {brandName}
+        {/* {brandName} */}
+        <img src={logo} alt="logo" width={180}/>
       </Link>
       {/* Navigation Links */}
       <div className="flex gap-4">

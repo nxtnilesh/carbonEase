@@ -93,8 +93,14 @@ const ReviewCard = ({ img, name, username, body, bgClass, textClass }) => {
 export function FactSection() {
   return (
     <div className="relative flex h-[500px] w-full flex-col items-center justify-center overflow-hidden rounded-lg border bg-background md:shadow-xl">
+  
       <Marquee pauseOnHover className="[--duration:20s]">
         {firstRow.map((review, index) => (
+          <ReviewCard key={index} {...review} />
+        ))}
+      </Marquee>
+      <Marquee reverse pauseOnHover className="[--duration:20s]">
+        {secondRow.map((review, index) => (
           <ReviewCard key={index} {...review} />
         ))}
       </Marquee>

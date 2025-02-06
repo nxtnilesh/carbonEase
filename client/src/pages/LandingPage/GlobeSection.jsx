@@ -1,39 +1,67 @@
 import { Globe } from "@/components/globe";
+import { GridPattern } from "@/components/grid-pattern";
+import { PulsatingButton } from "@/components/pulsating-button";
+import { ShimmerButton } from "@/components/shimmer-button";
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";  // Import Link from react-router-dom
-
+import { Link } from "react-router-dom"; // Import Link from react-router-dom
+import { cn } from "@/lib/utils";
 export function GlobeSection() {
   return (
-    <section className="relative flex items-center justify-center min-h-[87vh] px-6 md:px-40 pb-16 md:pb-40 pt-8 md:pt-20 overflow-hidden rounded-lg border bg-background">
+    <section className="relative flex justify-center min-h-[90vh] px-6 md:px-40 md:pb-40 overflow-hidden ">
       {/* Title and description */}
-      <div className="absolute text-center max-w-3xl z-10 px-4">
-        <h1 className="text-4xl sm:text-5xl font-semibold text-transparent bg-gradient-to-b from-black to-gray-400 bg-clip-text leading-tight sm:leading-snug">
-          Trade Carbon Credits & Renewable Energy Transparently with CarbonEase!
+      <div className=" text-center max-w-3xl z-10 px-4">
+        <h1 className="text-3xl sm:text-5xl font-semibold text-transparent bg-gradient-to-b from-black to-gray-400 bg-clip-text leading-tight sm:leading-tight mt-8 ">
+          Trade Carbon Credits & Renewable Energy Transparently with
+          <span className="text-brandMainColor"> CarbonEase!</span>
         </h1>
-        <p className="text-sm sm:text-base text-white dark:text-gray-200 mt-4 mx-auto max-w-xl">
+        {/* <Badge className="text-sm sm:text-base text-white dark:text-gray-200 mt-4 mx-auto max-w-xl">
           "A marketplace to buy, sell, and offset carbon footprints seamlessly."
-        </p>
+        </Badge> */}
       </div>
 
       {/* Globe animation */}
       <Globe className="top-36 z-0 absolute w-full h-full object-cover" />
-
-      {/* Gradient overlay */}
-      <div className="absolute inset-0 h-full bg-[radial-gradient(circle_at_50%_200%,rgba(0,0,0,0.5),rgba(255,255,255,0))]" />
-
       {/* Buttons */}
       <div className="absolute bottom-12 flex gap-8 justify-center w-full px-6 sm:px-0">
-        <Link to="/about"> {/* Link to "About Us" page */}
-          <Button className="bg-brandMainColor px-8 py-3 text-lg rounded-lg">
-            About Us
-          </Button>
+        <Link to="/about">
+          {/* Link to "About Us" page */}
+          <PulsatingButton className="shadow-2xl bg-white">
+            <span className="whitespace-pre-wrap text-center text-sm font-medium leading-none tracking-tight text-brandMainColor lg:text-lg">
+              Join Now
+            </span>
+          </PulsatingButton>
         </Link>
-        <Link to="/calculator"> {/* Link to "Credits Calculator" page */}
-          <Button variant="outline" className="px-8 py-3 text-lg rounded-lg">
-            Credits Calculator
-          </Button>
+        <Link to="/calculator">
+          {/* Link to "Credits Calculator" page */}
+          <button
+            variant="outline"
+            className="whitespace-pre-wrap text-center text-sm font-medium leading-none tracking-tight text-brandMainColor lg:text-lg border-2 border-brandMainColor px-4 py-2 rounded-md bg-white "
+          >
+            Learn More
+          </button>
         </Link>
       </div>
+      <GridPattern
+        squares={[
+          [4, 4],
+          [5, 1],
+          [8, 2],
+          [5, 3],
+          [5, 5],
+          [10, 10],
+          [12, 15],
+          [15, 10],
+          [10, 15],
+          [15, 10],
+          [10, 15],
+          [15, 10],
+        ]}
+        className={cn(
+          "[mask-image:radial-gradient(900px_circle_at_center,white,transparent)]",
+          "inset-x-0 inset-y-[-30%] h-[200%] skew-y-12 -z-10"
+        )}
+      />
     </section>
   );
 }
