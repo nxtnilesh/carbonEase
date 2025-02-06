@@ -34,10 +34,11 @@ const COLORS = [
   "#9966FF",
   "#FF9F40",
 ];
+
 const StatsSection = () => {
   return (
-    <section className="width flex ">
-      <div className="flex flex-col items-center w-full h-[250px]">
+    <section className="width flex flex-col items-center w-full py-8">
+      <div className="flex flex-col items-center w-full h-[300px]">
         <h2 className="text-xl font-bold mb-4 title">Global CO₂ Emissions by Year</h2>
         <ResponsiveContainer width="100%" height="100%">
           <BarChart
@@ -53,13 +54,27 @@ const StatsSection = () => {
                 position: "insideLeft",
               }}
             />
-            <Tooltip />
+            <Tooltip
+              formatter={(value) => `${value} Billion Metric Tons`}
+              labelFormatter={(label) => `Year: ${label}`}
+            />
             <Legend />
             <Bar dataKey="emissions" fill="#8884d8" barSize={50} />
           </BarChart>
         </ResponsiveContainer>
       </div>
-      <div className="flex-1">About the graph</div>
+      <div className="flex-1 w-full mt-8 p-4 bg-gray-100 rounded-md shadow-md">
+        <h3 className="text-lg font-semibold">About the Graph</h3>
+        <p className="text-sm text-gray-700 mt-2">
+          This graph displays global carbon dioxide (CO₂) emissions from the year 2000 to 2023. The emissions are measured in billion metric tons and are used to track the increasing concentration of greenhouse gases in the atmosphere.
+        </p>
+        <p className="text-sm text-gray-700 mt-2">
+          In a carbon credit trading platform, such data helps measure the impact of emission reduction efforts. Users can buy or sell carbon credits, which represent the reduction or removal of one metric ton of CO₂ from the atmosphere, in order to offset their carbon footprint.
+        </p>
+        <p className="text-sm text-gray-700 mt-2">
+          Understanding historical emission trends is essential for companies and individuals in the marketplace to make informed decisions regarding their carbon offset strategies.
+        </p>
+      </div>
     </section>
   );
 };
