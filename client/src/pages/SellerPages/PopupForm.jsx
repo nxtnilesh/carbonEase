@@ -14,7 +14,7 @@ const PopupForm = ({ isOpen, closePopup, apiUrl }) => {
   const [formData, setFormData] = useState({
     title: "",
     description: "",
-    seller: "", // Should be fetched via authentication
+    // seller: "", // Should be fetched via authentication
     quantity: "",
     pricePerCredit: "",
     totalPrice: "",
