@@ -4,8 +4,8 @@ import { BarChart3, ListChecks, PlusCircle, ShoppingCart, DollarSign, MessageSqu
 
 // Define the navigation items
 const navigation = [
-  { name: "Dashboard Overview", href: "/overview", icon: BarChart3 },
-  { name: "Manage Listings", href: "/dashboard/listings", icon: ListChecks },
+  { name: "Dashboard Overview", href: "/seller-dashboard", icon: BarChart3 },
+  { name: "Manage Listings", href: "/listings", icon: ListChecks },
   { name: "Create New Listing", href: "/form", icon: PlusCircle },
   { name: "Orders & Transactions", href: "/dashboard/orders", icon: ShoppingCart },
   { name: "Earnings & Payouts", href: "/dashboard/earnings", icon: DollarSign },
