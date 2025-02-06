@@ -1,10 +1,14 @@
-import { Navigate, Outlet } from "react-router-dom";
+import { Navigate, Outlet, useLocation } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
 const PublicRoute = () => {
   const { user } = useAuth();
+  const location = useLocation();
 
-  if (user) {
+  // Only redirect to "/profile" if the user is trying to access auth-related pages
+  const isAuthPage = ["/login", "/register", "/verify-otp"].includes(location.pathname);
+
+  if (user && isAuthPage) {
     return <Navigate to="/profile" replace />;
   }
 
