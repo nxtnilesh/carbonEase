@@ -11,9 +11,9 @@ app.use(express.json());
 
 // import routes
 
-import userRoute from "./src/routes/userRoute.js";
+import userRoute from "./src/routes/authRoute.js";
 
-app.use(userRoute);
+app.use("/api/auth", userRoute);
 
 const PORT = process.env.PORT || 3000;
 connect()
