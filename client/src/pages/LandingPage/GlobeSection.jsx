@@ -39,7 +39,7 @@ export function GlobeSection() {
           <button className="flex items-center justify-center gap-2 whitespace-pre-wrap text-center text-sm font-medium leading-none tracking-tight text-brandMainColor lg:text-lg border-2 border-brandMainColor px-4 py-2 rounded-md bg-white hover:bg-green-100 transition-all duration-200">
             <DollarSign className="w-5 h-5 text-brandMainColor" />{" "}
             {/* Dollar icon */}
-            Sell your Credit
+            Sell your Credits
             <ArrowRight className="w-5 h-5 text-brandMainColor" />{" "}
             {/* Arrow icon */}
           </button>
