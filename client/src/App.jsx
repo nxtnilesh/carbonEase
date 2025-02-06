@@ -55,6 +55,7 @@ const App = () => {
 
             {/* Protected Routes - Only for authenticated users */}
             <Route element={<ProtectedRoute />}>
+              <Route path="/" element={<LandingPage />} />
               <Route path="/profile" element={<Profile />} />
             </Route>
 
