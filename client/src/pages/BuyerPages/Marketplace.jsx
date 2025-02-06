@@ -57,11 +57,11 @@ const Marketplace = () => {
                 <input name="location" placeholder="Location" onChange={handleFilterChange} className="border p-2 rounded" />
                 <input name="minPrice" placeholder="Min Price" type="number" onChange={handleFilterChange} className="border p-2 rounded" />
                 <input name="maxPrice" placeholder="Max Price" type="number" onChange={handleFilterChange} className="border p-2 rounded" />
-                <Button onClick={applyFilters}>Apply Filters</Button>
+                <Button className="bg-green-500" onClick={applyFilters}>Apply Filters</Button>
             </div>
             {loading && <p>Loading...</p>}
             {error && <p className="text-red-500">{error}</p>}
-            <Button onClick={fetchListings} className="mb-4">Refresh Listings</Button>
+            <Button onClick={fetchListings} className="mb-4 bg-green-500">Refresh Listings</Button>
             <div className="grid grid-cols-3 gap-4">
                 {listings.map((listing) => (
                     <Card key={listing._id} className="p-4 border rounded-lg shadow-md" onClick={() => openListingDetails(listing)}>

@@ -22,7 +22,7 @@ export function GlobeSection() {
       <Globe className="top-36 z-0 absolute w-full h-full object-cover" />
       {/* Buttons */}
       <div className="absolute bottom-12 flex gap-8 justify-center w-full px-6 sm:px-0">
-        <Link to="/about">
+        <Link to="/buyer">
           {/* Link to "About Us" page */}
           <PulsatingButton className="shadow-2xl bg-white">
             <span className="flex items-center gap-2 whitespace-pre-wrap text-center text-sm font-medium leading-none tracking-tight text-brandMainColor lg:text-lg">
@@ -34,7 +34,7 @@ export function GlobeSection() {
             </span>
           </PulsatingButton>
         </Link>
-        <Link to="/calculator">
+        <Link to="/seller">
           {/* Link to "Credits Calculator" page */}
           <button className="flex items-center justify-center gap-2 whitespace-pre-wrap text-center text-sm font-medium leading-none tracking-tight text-brandMainColor lg:text-lg border-2 border-brandMainColor px-4 py-2 rounded-md bg-white hover:bg-green-100 transition-all duration-200">
             <DollarSign className="w-5 h-5 text-brandMainColor" />{" "}

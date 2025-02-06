@@ -20,6 +20,7 @@ import BuyerDashboard from "./pages/BuyerPages/BuyerDashboard";
 import SellerDashboardLayout from "./pages/SellerDashboar";
 import BuyerDashboardLayout from "./pages/BuyerDashboard";
 import Marketplace from "./pages/BuyerPages/Marketplace";
+import ContactUs from "./pages/ContactUs";
 
 const App = () => {
   return (
@@ -49,6 +50,7 @@ const App = () => {
               <Route path="/buyer-dashboard" element={<BuyerDashboard/>} />
               <Route path="/coming" element={<ComingSoon />} />
               <Route path="/market" element={<Marketplace />} />
+              <Route path="/contact" element={<ContactUs/>}/>
             </Route>
 
             {/* Protected Routes - Only for authenticated users */}

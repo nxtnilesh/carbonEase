@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Table, TableBody, TableCell, TableHead, TableRow } from '@/components/ui/table'; // ShadCN UI table
+import { Table, TableBody, TableCell, TableHead, TableRow } from '@/components/ui/table';
 import { Button } from '@/components/ui/button';
-import { Select, SelectTrigger, SelectContent, SelectItem } from '@/components/ui/select';
+import { Select, SelectTrigger, SelectContent, SelectItem, SelectValue } from '@/components/ui/select';
 
 const ListingsPage = () => {
   const [listings, setListings] = useState([]);
@@ -36,46 +36,50 @@ const ListingsPage = () => {
   return (
     <div className="container mx-auto p-4">
       <h1 className="text-3xl font-semibold mb-6">All Listings</h1>
-      <Table>
-        <TableHead>
-          <TableRow>
-            <TableCell>Title</TableCell>
-            <TableCell>Description</TableCell>
-            <TableCell>Quantity</TableCell>
-            <TableCell>Price per Credit</TableCell>
-            <TableCell>Status</TableCell>
-            <TableCell>Actions</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {listings.map((listing) => (
-            <TableRow key={listing._id}>
-              <TableCell>{listing.title}</TableCell>
-              <TableCell>{listing.description}</TableCell>
-              <TableCell>{listing.quantity}</TableCell>
-              <TableCell>{listing.pricePerCredit}</TableCell>
-              <TableCell>
-                <Select
-                  value={listing.status}
-                  onChange={(e) => handleStatusChange(listing._id, e.target.value)}
-                >
-                  <SelectTrigger>
-                    <span>{listing.status}</span>
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="Available">Available</SelectItem>
-                    <SelectItem value="Sold">Sold</SelectItem>
-                    <SelectItem value="Pending">Pending</SelectItem>
-                  </SelectContent>
-                </Select>
-              </TableCell>
-              <TableCell>
-                <Button onClick={() => handleStatusChange(listing._id, 'Sold')}>Mark as Sold</Button>
-              </TableCell>
+      <div className="overflow-x-auto">
+        <Table className="w-full border-collapse">
+          <TableBody>
+            <TableRow className="bg-gray-100">
+              <TableCell className="font-semibold text-left px-4 py-2">Title</TableCell>
+              <TableCell className="font-semibold text-left px-4 py-2">Description</TableCell>
+              <TableCell className="font-semibold text-left px-4 py-2">Quantity</TableCell>
+              <TableCell className="font-semibold text-left px-4 py-2">Price per Credit</TableCell>
+              <TableCell className="font-semibold text-left px-4 py-2">Status</TableCell>
+              <TableCell className="font-semibold text-left px-4 py-2">Actions</TableCell>
             </TableRow>
-          ))}
-        </TableBody>
-      </Table>
+          </TableBody>
+          <TableBody>
+            {listings.map((listing) => (
+              <TableRow key={listing._id} className="border-b">
+                <TableCell className="px-4 py-2">{listing.title}</TableCell>
+                <TableCell className="px-4 py-2">{listing.description}</TableCell>
+                <TableCell className="px-4 py-2">{listing.quantity}</TableCell>
+                <TableCell className="px-4 py-2">{listing.pricePerCredit}</TableCell>
+                <TableCell className="px-4 py-2">
+                  <Select
+                    value={listing.status}
+                    onValueChange={(value) => handleStatusChange(listing._id, value)}
+                  >
+                    <SelectTrigger className="w-[120px]">
+                      <SelectValue placeholder="Select status" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="Available">Available</SelectItem>
+                      <SelectItem value="Sold">Sold</SelectItem>
+                      <SelectItem value="Pending">Pending</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </TableCell>
+                <TableCell className="px-4 py-2">
+                  <Button className="bg-green-500" onClick={() => handleStatusChange(listing._id, 'Sold')}>
+                    Mark as Sold
+                  </Button>
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </div>
     </div>
   );
 };

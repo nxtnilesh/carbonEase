@@ -136,7 +136,7 @@ const BuyerDashboard = () => {
               <p>Total Spent: {user.totalSpent}</p>
             </div>
           </CardContent>
-          <Button className="mt-4">Edit Profile</Button>
+          <Button className="mt-4 bg-green-500">Edit Profile</Button>
         </Card>
       </div>
     </div>

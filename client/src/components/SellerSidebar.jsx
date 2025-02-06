@@ -19,7 +19,7 @@ export function SellerSidebar() {
   return (
     <div className="flex w-64 flex-col bg-white">
       <div className="flex h-16 shrink-0 items-center border-b px-6">
-        <span className="text-lg font-semibold">CarbonEase</span>
+        <span className="text-lg font-semibold">Seller</span>
       </div>
       <nav className="flex-1 space-y-1 px-4 py-4">
         {navigation.map((item) => {
