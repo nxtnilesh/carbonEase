@@ -81,3 +81,23 @@ export const deleteListing = async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 };
+
+export const filterListing = async (req, res) => {
+    try {
+        const { projectType, location, minPrice, maxPrice, status } = req.query;
+
+        let filter = {};
+
+        if (projectType) filter.projectType = projectType;
+        if (location) filter.location = location; // Case-insensitive search
+        if (status) filter.status = status;
+        if (minPrice || maxPrice) filter.pricePerCredit = {};
+        if (minPrice) filter.pricePerCredit.$gte = Number(minPrice);
+        if (maxPrice) filter.pricePerCredit.$lte = Number(maxPrice);
+
+        const listings = await CarbonCredit.find(filter);
+        res.status(200).json(listings);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});

@@ -20,7 +20,7 @@ router.get("/", getListings);
 router.get("/:id", getListingById);
 
 // ✅ Filter API to filter listings based on the given parameters
-router.get("/filter", filterListings);
+router.get("/", filterListings);
 
 // ✅ Update a carbon credit listing
 router.put("/:id", updateListing);

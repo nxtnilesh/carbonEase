@@ -2,10 +2,11 @@ import React, { useEffect, useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import axios from "axios";
 
 const Marketplace = () => {
     const [listings, setListings] = useState([]);
-    const [filters, setFilters] = useState({});
+    const [filters, setFilters] = useState({ projectType: "", location: "", minPrice: "", maxPrice: "" });
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const [selectedListing, setSelectedListing] = useState(null);
@@ -18,9 +19,8 @@ const Marketplace = () => {
     const fetchListings = async () => {
         setLoading(true);
         try {
-            const response = await fetch("http://localhost:3000/api/credits");
-            const data = await response.json();
-            setListings(data);
+            const response = await axios.get("http://localhost:3000/api/credits");
+            setListings(response.data);
         } catch (err) {
             setError("Failed to load listings");
         }
@@ -35,9 +35,8 @@ const Marketplace = () => {
         setLoading(true);
         try {
             const query = new URLSearchParams(filters).toString();
-            const response = await fetch(`/api/listings?${query}`);
-            const data = await response.json();
-            setListings(data);
+            const response = await axios.get(`http://localhost:3000/api/credits/filters?${query}`);
+            setListings(response.data);
         } catch (err) {
             setError("Failed to filter listings");
         }
@@ -52,6 +51,8 @@ const Marketplace = () => {
     return (
         <div className="p-6">
             <h1 className="text-2xl font-bold mb-4">Carbon Credit Marketplace</h1>
+
+            {/* Filter Inputs */}
             <div className="grid grid-cols-3 gap-4 mb-6">
                 <input name="projectType" placeholder="Project Type" onChange={handleFilterChange} className="border p-2 rounded" />
                 <input name="location" placeholder="Location" onChange={handleFilterChange} className="border p-2 rounded" />
@@ -59,9 +60,12 @@ const Marketplace = () => {
                 <input name="maxPrice" placeholder="Max Price" type="number" onChange={handleFilterChange} className="border p-2 rounded" />
                 <Button className="bg-green-500" onClick={applyFilters}>Apply Filters</Button>
             </div>
+
+            {/* Listings Section */}
             {loading && <p>Loading...</p>}
             {error && <p className="text-red-500">{error}</p>}
             <Button onClick={fetchListings} className="mb-4 bg-green-500">Refresh Listings</Button>
+
             <div className="grid grid-cols-3 gap-4">
                 {listings.map((listing) => (
                     <Card key={listing._id} className="p-4 border rounded-lg shadow-md" onClick={() => openListingDetails(listing)}>
@@ -75,6 +79,8 @@ const Marketplace = () => {
                     </Card>
                 ))}
             </div>
+
+            {/* Listing Details Dialog */}
             {isDialogOpen && selectedListing && (
                 <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
                     <DialogContent>
