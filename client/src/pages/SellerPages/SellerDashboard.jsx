@@ -25,6 +25,7 @@ const SellerDashboard = () => {
       try {
         const response = await axios.get(
           "https://carbonease-api.onrender.com/api/credits/payment-data",
+          // "http://localhost:3000/api/credits/payment-data",
           {
             headers: {
               Authorization: `Bearer ${token}`,

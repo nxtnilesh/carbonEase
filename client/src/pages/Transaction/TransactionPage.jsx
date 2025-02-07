@@ -43,6 +43,7 @@ const TransactionPage = () => {
 
       const response = await axios.post(
         "https://carbonease-api.onrender.com/api/credits/payment",
+        // "http://localhost:3000/api/credits/payment",
         payload,
         {
           headers: {

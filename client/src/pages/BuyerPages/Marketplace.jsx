@@ -42,6 +42,7 @@ const Marketplace = () => {
     setLoading(true);
     try {
       const response = await axios.get("https://carbonease-api.onrender.com/api/credits");
+      // const response = await axios.get("http://localhost:3000/api/credits");
       setListings(response.data);
       console.log("respone", response);
     } catch (err) {
@@ -60,6 +61,7 @@ const Marketplace = () => {
       const query = new URLSearchParams(filters).toString();
       const response = await axios.get(
         `https://carbonease-api.onrender.com/api/credits/filters?${query}`
+        // `http://localhost:3000/api/credits/filters?${query}`
       );
       setListings(response.data);
     } catch (err) {

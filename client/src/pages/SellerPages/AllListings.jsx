@@ -26,6 +26,7 @@ const ListingsPage = () => {
       try {
         const response = await axios.get(
           "https://carbonease-api.onrender.com/api/credits/posted-data",
+          // "http://localhost:3000/api/credits/posted-data",
           {
             headers: {
               Authorization: `Bearer ${token}`, // Include Bearer token
