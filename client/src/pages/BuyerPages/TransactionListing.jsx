@@ -21,9 +21,8 @@ const TransactionListing = () => {
   useEffect(() => {
     const fetchListings = async () => {
       try {
-        // const response = await axios.get("http://localhost:3000/api/credits");
         const response = await axios.get(
-          "http://localhost:3000/api/credits/payment-data",
+          "https://carbonease-api.onrender.com/api/credits/payment-data",
           {
             headers: {
               Authorization: `Bearer ${token}`, // Include Bearer token

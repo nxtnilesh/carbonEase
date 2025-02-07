@@ -93,7 +93,7 @@ const FormComponent = ({ isOpen, setIsOpen }) => {
       };
 
       const response = await axios.post(
-        "http://localhost:3000/api/credits/post",
+        "https://carbonease-api.onrender.com/api/credits/post",
         payload,
         {
           headers: {
