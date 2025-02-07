@@ -1,12 +1,11 @@
 import CarbonCredit from "../models/Listing.js"; // Import model
 import userModel from "../models/userModel.js";
+import logger from "../utils/logger.js";
 
 // ✅ Create a new listing
 export const createListing = async (req, res) => {
   try {
     const userId = req.user.userId;
-    console.log("Log", userId);
-
     const newListing = new CarbonCredit(req.body);
     const listingData = await newListing.save();
     const updatedUser = await userModel.findByIdAndUpdate(
@@ -122,5 +121,22 @@ export const filterListing = async (req, res) => {
     res.status(200).json(listings);
   } catch (error) {
     res.status(500).json({ error: error.message });
+  }
+};
+
+export const getPostedListingForUser = async (req, res) => {
+  try {
+    const userId = req.user.userId;
+    const postedDataByUser = await userModel
+      .findById(userId)
+      .populate({
+        path: "posted",
+      })
+      .select("posted");
+    console.log(userId);
+
+    return res.status(200).json(postedDataByUser);
+  } catch (error) {
+    logger.error("Get posted data", error);
   }
 };

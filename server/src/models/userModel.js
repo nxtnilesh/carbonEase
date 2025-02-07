@@ -7,10 +7,10 @@ const userSchema = new mongoose.Schema({
   password: { type: String, required: true },
   totalCredits: { type: Number, default: 0 },
   totalSpents: { type: Number, default: 0 },
-  posted: {
+  posted: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: "CarbonCredit",
-  },
+  }],
   seen: [
     {
       type: mongoose.Schema.Types.ObjectId,
