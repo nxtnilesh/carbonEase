@@ -42,20 +42,22 @@ const App = () => {
                 path="/calculator"
                 element={<CarbonEmissionCalculator />}
               />
-              <Route path="/seller" element={<SellerDashboardLayout />} />
-              <Route path="/buyer" element={<BuyerDashboardLayout />} />
+              {/* <Route path="/seller" element={<SellerDashboardLayout />} /> */}
+              {/* <Route path="/buyer" element={<BuyerDashboardLayout />} /> */}
               <Route path="/form" element={<DataForm />} />
               <Route path="/listings" element={<ListingsPage />} />
               <Route path="/seller-dashboard" element={<SellerDashboard />} />
-              <Route path="/buyer-dashboard" element={<BuyerDashboard/>} />
+              <Route path="/buyer-dashboard" element={<BuyerDashboard />} />
               <Route path="/coming" element={<ComingSoon />} />
               <Route path="/market" element={<Marketplace />} />
-              <Route path="/contact" element={<ContactUs/>}/>
+              <Route path="/contact" element={<ContactUs />} />
             </Route>
 
             {/* Protected Routes - Only for authenticated users */}
             <Route element={<ProtectedRoute />}>
               <Route path="/profile" element={<Profile />} />
+              <Route path="/seller" element={<SellerDashboardLayout />} />
+              <Route path="/buyer" element={<BuyerDashboardLayout />} />
             </Route>
 
             {/* Default Route */}

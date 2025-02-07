@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 
 const Profile = () => {
   const { user, logoutUser } = useAuth();
-
+  
   return (
     <div className="max-w-md mx-auto mt-10">
       <h1 className="text-2xl font-bold">Welcome, {user?.email}</h1>

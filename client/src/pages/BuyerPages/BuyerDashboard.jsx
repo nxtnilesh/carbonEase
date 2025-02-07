@@ -1,35 +1,78 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { CheckCircle, Clock, TrendingUp } from "lucide-react";
+import { CheckCircle, Clock, TrendingUp, User } from "lucide-react";
+import { useAuth } from "@/context/AuthContext";
 
 const BuyerDashboard = () => {
+  const { user, logoutUser } = useAuth();
+  console.log("UserData", user);
+  
   const overviewData = [
-    { title: "Total Credits Purchased", value: "3,200", icon: <TrendingUp size={24} /> },
-    { title: "Total Spent", value: "$16,000", icon: <CheckCircle size={24} /> },
-    { title: "Pending Orders", value: "4", icon: <Clock size={24} /> },
+    {
+      title: "Total Credits Purchased",
+      value: user?.totalCredits,
+      icon: <TrendingUp size={24} />,
+    },
+    {
+      title: "Total Spent",
+      value: user?.totalSpents || 0,
+      icon: <CheckCircle size={24} />,
+    },
+    { title: "Total Orders", value: user?.tranctions?.length || 0, icon: <Clock size={24} /> },
   ];
 
   const recentPurchases = [
-    { id: "ORD1234", seller: "Green Energy Ltd.", amount: "600", price: "$3,000", status: "Completed" },
-    { id: "ORD5678", seller: "Eco Trust", amount: "400", price: "$2,000", status: "Pending" },
+    {
+      id: "ORD1234",
+      seller: "Green Energy Ltd.",
+      amount: "600",
+      price: "$3,000",
+      status: "Completed",
+    },
+    {
+      id: "ORD5678",
+      seller: "Eco Trust",
+      amount: "400",
+      price: "$2,000",
+      status: "Pending",
+    },
   ];
 
   const availableListings = [
-    { id: "LIST101", seller: "Solar Solutions", credits: "1200", price: "$6,000", status: "Available" },
-    { id: "LIST102", seller: "Wind Power Inc.", credits: "800", price: "$4,000", status: "Available" },
+    {
+      id: "LIST101",
+      seller: "Solar Solutions",
+      credits: "1200",
+      price: "$6,000",
+      status: "Available",
+    },
+    {
+      id: "LIST102",
+      seller: "Wind Power Inc.",
+      credits: "800",
+      price: "$4,000",
+      status: "Available",
+    },
   ];
 
   // User Profile Data
-  const user = {
-    name: "Jane Doe",
-    email: "janedoe@example.com",
-    profilePicture: "/path/to/profile-picture.jpg", // Example path for profile picture
-    location: "Los Angeles, USA",
-    totalCredits: "3,500",
-    totalSpent: "$18,000",
-  };
+  // const user = {
+  //   name: "Jane Doe",
+  //   email: "janedoe@example.com",
+  //   profilePicture: "/path/to/profile-picture.jpg", // Example path for profile picture
+  //   location: "Los Angeles, USA",
+  //   totalCredits: "3,500",
+  //   totalSpent: "$18,000",
+  // };
 
   return (
     <div className="p-6 grid grid-cols-1 md:grid-cols-4 gap-6">
@@ -43,7 +86,9 @@ const BuyerDashboard = () => {
               <CardHeader>
                 <CardTitle className="text-center">{item.title}</CardTitle>
               </CardHeader>
-              <CardContent className="text-2xl font-bold">{item.value}</CardContent>
+              <CardContent className="text-2xl font-bold">
+                {item.value}
+              </CardContent>
             </Card>
           ))}
         </div>
@@ -72,7 +117,11 @@ const BuyerDashboard = () => {
                     <TableCell>{order.amount} Credits</TableCell>
                     <TableCell>{order.price}</TableCell>
                     <TableCell>
-                      <Badge variant={order.status === "Completed" ? "success" : "warning"}>
+                      <Badge
+                        variant={
+                          order.status === "Completed" ? "success" : "warning"
+                        }
+                      >
                         {order.status}
                       </Badge>
                     </TableCell>
@@ -120,20 +169,17 @@ const BuyerDashboard = () => {
       {/* Right Column: User Profile */}
       <div className="space-y-6">
         <Card className="flex flex-col items-center p-6">
-          <img
-            src={user.profilePicture}
-            alt="Profile"
-            className="w-32 h-32 rounded-full border-4 border-gray-200"
-          />
+          <div className="bg-slate-200 rounded-full p-4">
+            <User size={40} />
+          </div>
           <CardHeader>
             <CardTitle className="text-center text-xl">{user.name}</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-center text-gray-600">
+            <div className="text-gray-600">
               <p>{user.email}</p>
-              <p>{user.location}</p>
-              <p>Total Credits: {user.totalCredits}</p>
-              <p>Total Spent: {user.totalSpent}</p>
+              <p>Total Credits: {user?.totalCredits || 0}</p>
+              <p>Total Spent: {user?.totalSpent || 0}</p>
             </div>
           </CardContent>
           <Button className="mt-4 bg-green-500">Edit Profile</Button>

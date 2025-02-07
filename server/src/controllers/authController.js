@@ -71,10 +71,8 @@ export const login = async (req, res) => {
 
 export const profile = async (req, res) => {
   try {
-    // const user
-    // console.log("Auth user", req.user);
-    const userDetails = await UserDetails.findOne({ email})
-    return res.json({ user: req.user });
+    const userDetails = await User.findOne({ _id: req.user.userId });
+    return res.json({ user: userDetails });
   } catch (error) {
     logger.error(error, "profile");
   }

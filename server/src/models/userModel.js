@@ -5,6 +5,8 @@ import jwt from "jsonwebtoken";
 const userSchema = new mongoose.Schema({
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
+  totalCredits: { type: Number, default: 0 },
+  totalSpents: { type: Number, default: 0 },
   posted: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "CarbonCredit",
@@ -15,10 +17,22 @@ const userSchema = new mongoose.Schema({
       ref: "CarbonCredit",
     },
   ],
-  tranctions: [
+  transactions: [
     {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "CarbonCredit",
+      carbonCredit: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "CarbonCredit",
+        required: true,
+      },
+      amount: { type: Number, required: true },
+      purchaseDate: { type: Date, default: Date.now },
+      quantity: { type: Number, required: true },
+      sellerName: { type: String, required: true },
+      status: {
+        type: String,
+        enum: ["Pending", "Completed", "Failed"],
+        default: "Pending",
+      },
     },
   ],
   isVerified: { type: Boolean, default: false },
