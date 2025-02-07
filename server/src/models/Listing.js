@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 const CarbonCreditSchema = new mongoose.Schema({
   title: { type: String, required: true },
   description: { type: String, required: true },
-  // seller: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
+  // user: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
   quantity: { type: Number, min: 1, required: true },
   pricePerCredit: { type: Number, min: 0, required: true },
   totalPrice: { type: Number, min: 0 }, // Will be auto-calculated

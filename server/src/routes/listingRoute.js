@@ -5,8 +5,10 @@ import {
   getListingById,
   updateListing,
   deleteListing,
-  filterListings
+  filterListings,
 } from "../controllers/listingController.js";
+
+// import authMiddleware from "../middlewares/authMiddleware.js";
 
 const router = express.Router();
 
