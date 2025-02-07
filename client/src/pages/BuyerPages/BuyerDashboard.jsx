@@ -12,13 +12,14 @@ import { CheckCircle, Clock, TrendingUp, User } from "lucide-react";
 import { useAuth } from "@/context/AuthContext";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { NumberTicker } from "@/components/magicui/number-ticker";
 
 const BuyerDashboard = () => {
   const { user, token } = useAuth();
   const [recentPurchases, setRecentPurchases] = useState([]);
   const [totalAmount, setTotalAmount] = useState(0);
   const [totalQuantity, setTotalQuantity] = useState(0);
-  
+
   useEffect(() => {
     const fetchListings = async () => {
       try {
@@ -30,12 +31,12 @@ const BuyerDashboard = () => {
             },
           }
         );
-  
+
         console.log("Posted Data", response.data.transactions);
-  
+
         if (Array.isArray(response.data.transactions)) {
           setRecentPurchases(response.data.transactions);
-  
+
           // ✅ Calculate the total sum of the 'amount' key
           const total = response.data.transactions.reduce(
             (sum, transaction) => sum + (transaction.amount || 0),
@@ -45,10 +46,10 @@ const BuyerDashboard = () => {
         } else {
           console.error("Invalid data format:", response.data);
         }
-        
+
         if (Array.isArray(response.data.transactions)) {
           setRecentPurchases(response.data.transactions);
-  
+
           // ✅ Calculate the total sum of the 'amount' key
           const total = response.data.transactions.reduce(
             (sum, transaction) => sum + (transaction.amount || 0),
@@ -62,14 +63,14 @@ const BuyerDashboard = () => {
         console.error("Error fetching listings:", error);
       }
     };
-  
+
     fetchListings();
   }, [token]);
-  
+
   const overviewData = [
     {
       title: "Total Credits Purchased",
-      value: user?.totalCredits,
+      value: 20,
       icon: <TrendingUp size={24} />,
     },
     {
@@ -84,22 +85,6 @@ const BuyerDashboard = () => {
     },
   ];
 
-  const availableListings = [
-    {
-      id: "LIST101",
-      seller: "Solar Solutions",
-      credits: "1200",
-      price: "$6,000",
-      status: "Available",
-    },
-    {
-      id: "LIST102",
-      seller: "Wind Power Inc.",
-      credits: "800",
-      price: "$4,000",
-      status: "Available",
-    },
-  ];
 
   return (
     <div className="p-6 grid grid-cols-1 md:grid-cols-4 gap-6">
@@ -114,7 +99,11 @@ const BuyerDashboard = () => {
                 <CardTitle className="text-center">{item.title}</CardTitle>
               </CardHeader>
               <CardContent className="text-2xl font-bold">
-                {item.value}
+                {/* {item.value} */}
+                <NumberTicker
+                  value={item.value || 0}
+                  className="whitespace-pre-wrap text-8xl font-medium tracking-tighter text-black dark:text-white"
+                />
               </CardContent>
             </Card>
           ))}
