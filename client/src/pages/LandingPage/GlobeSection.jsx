@@ -20,7 +20,7 @@ export function GlobeSection() {
       </div>
 
       {/* Globe animation */}
-      {/* <Globe className="top-36 z-0 absolute w-full h-full object-cover" /> */}
+      <Globe className="top-36 z-0 absolute w-full h-full object-cover" />
       {/* Buttons */}
       <div className="absolute bottom-12 flex gap-8 justify-center w-full px-6 sm:px-0">
         <Link to="/buyer">

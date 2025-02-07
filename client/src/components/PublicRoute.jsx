@@ -9,7 +9,7 @@ const PublicRoute = () => {
   const isAuthPage = ["/login", "/register", "/verify-otp"].includes(location.pathname);
 
   if (user && isAuthPage) {
-    return <Navigate to="/profile" replace />;
+    return <Navigate to="/" replace />;
   }
 
   return <Outlet />;

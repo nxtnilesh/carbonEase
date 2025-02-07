@@ -45,7 +45,7 @@ const VerifyOTP = () => {
   };
 
   return (
-    <div className="max-w-md mx-auto mt-10 p-6 bg-white dark:bg-gray-900 rounded-lg shadow-lg">
+    <div className="max-w-md mx-auto mt-10 p-6 bg-white dark:bg-gray-900 rounded-lg shadow-lg my-8">
       <h1 className="text-2xl font-bold text-center text-brandMainColor mb-2">OTP Verification</h1>
       <p className="text-center text-gray-500 dark:text-gray-400 mb-6">
         Enter the OTP sent to <span className="font-medium">{state.email}</span>

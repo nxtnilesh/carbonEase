@@ -20,6 +20,7 @@ import BuyerDashboard from "./pages/BuyerPages/BuyerDashboard";
 import BuyerDashboardLayout from "./pages/BuyerDashboard";
 import Marketplace from "./pages/BuyerPages/Marketplace";
 import ContactUs from "./pages/ContactUs";
+import TransactionPage from "./pages/Transaction/TransactionPage";
 
 const App = () => {
   return (
@@ -48,6 +49,7 @@ const App = () => {
                 <Route path="/coming" element={<ComingSoon />} />
                 <Route path="/market" element={<Marketplace />} />
                 <Route path="/contact" element={<ContactUs />} />
+                <Route path="/payment" element={<TransactionPage />} />
               </Route>
 
               {/* Protected Routes */}

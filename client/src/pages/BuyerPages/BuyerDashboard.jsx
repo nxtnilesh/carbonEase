@@ -64,15 +64,6 @@ const BuyerDashboard = () => {
     },
   ];
 
-  // User Profile Data
-  // const user = {
-  //   name: "Jane Doe",
-  //   email: "janedoe@example.com",
-  //   profilePicture: "/path/to/profile-picture.jpg", // Example path for profile picture
-  //   location: "Los Angeles, USA",
-  //   totalCredits: "3,500",
-  //   totalSpent: "$18,000",
-  // };
 
   return (
     <div className="p-6 grid grid-cols-1 md:grid-cols-4 gap-6">
@@ -179,7 +170,6 @@ const BuyerDashboard = () => {
             <div className="text-gray-600">
               <p>{user.email}</p>
               <p>Total Credits: {user?.totalCredits || 0}</p>
-              <p>Total Spent: {user?.totalSpent || 0}</p>
             </div>
           </CardContent>
           <Button className="mt-4 bg-green-500">Edit Profile</Button>
