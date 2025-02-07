@@ -40,11 +40,6 @@ const Navbar = () => {
       <div className="flex gap-4">
         {user ? (
           <>
-            <Link to="/profile">
-              <Button className="bg-brandMainColor text-white px-4 py-2">
-                Profile
-              </Button>
-            </Link>
             <Button
               onClick={logoutUser}
               className="bg-red-500 text-white px-4 py-2"

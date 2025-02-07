@@ -24,11 +24,10 @@ const Login = () => {
     try {
       const { user } = await loginUser(email, password);
       setUser(user);
-
       toast.success("Login successful! Redirecting to home...");
-
       setTimeout(() => {
         navigate("/");
+        window.location.reload();
       }, 2000); // Redirect after 2 seconds
     } catch (error) {
       setError("Invalid email or password. Please try again.");
@@ -39,7 +38,7 @@ const Login = () => {
   };
 
   return (
-    <div className="max-w-3xl mx-auto mt-10 p-6 bg-white dark:bg-gray-900 rounded-lg shadow-lg h-full">
+    <div className="max-w-3xl mx-auto mt-10 p-6 bg-white dark:bg-gray-900 rounded-2xl shadow-lg h-full my-8">
       <div className="flex">
         <div>
           <img src={auth} alt="auth" width={300} />
@@ -98,7 +97,10 @@ const Login = () => {
 
             <p className="text-sm text-center text-gray-600 dark:text-gray-400">
               Don't have an account?
-              <Link to="/register" className="text-brandMainColor hover:underline">
+              <Link
+                to="/register"
+                className="text-brandMainColor hover:underline"
+              >
                 {" "}
                 Register
               </Link>

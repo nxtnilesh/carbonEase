@@ -1,3 +1,4 @@
+import { toast } from "@/hooks/use-toast";
 import API from "../utils/api";
 
 export const registerUser = async (email, password) => {
@@ -20,4 +21,7 @@ export const getProfile = async () => {
 
 export const logoutUser = () => {
   localStorage.removeItem("token");
+  toast({
+    title: "Logout Successfully",
+  })
 };

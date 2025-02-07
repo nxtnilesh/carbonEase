@@ -46,7 +46,7 @@ const Register = () => {
   };
 
   return (
-    <div className="max-w-md mx-auto mt-10 p-6 bg-white dark:bg-gray-900 rounded-lg shadow-lg">
+    <div className="max-w-md mx-auto mt-10 p-6 bg-white dark:bg-gray-900 rounded-2xl shadow-lg my-8">
       <h1 className="text-2xl font-bold text-center text-brandMainColor mb-2">
         Create an Account
       </h1>

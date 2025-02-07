@@ -1,3 +1,4 @@
+import AccordionSection from "./LandingPage/AccordionSection";
 import {FactSection} from "./LandingPage/FactSection";
 import {FeatureSection} from "./LandingPage/FeatureSection";
 import { GlobeSection } from "./LandingPage/GlobeSection";
@@ -10,6 +11,7 @@ const LandingPage = () => {
       <FactSection />
       <StatsSection />
       <FeatureSection />
+      <AccordionSection/>
     </main>
   );
 };

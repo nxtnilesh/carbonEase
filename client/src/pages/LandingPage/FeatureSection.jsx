@@ -51,7 +51,7 @@ const notifications = [
 
 const Notification = ({ name, description, icon, color }) => {
   return (
-    <div className="width flex flex-col items-center p-6 bg-white dark:bg-gray-900 rounded-xl shadow-lg transition-all duration-200 hover:scale-105">
+    <div className="width flex flex-col items-center p-6 bg-white dark:bg-gray-900 rounded-xl shadow-lg transition-all duration-200 hover:scale-105 ">
       <div
         className="flex items-center justify-center w-14 h-14 rounded-full"
         style={{ backgroundColor: color }}
