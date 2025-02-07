@@ -105,6 +105,16 @@ export const deleteListing = async (req, res) => {
   }
 };
 
+export const deleteAllListings = async (req, res) => {
+  try {
+    await CarbonCredit.deleteMany({});
+    res.status(200).json({ message: "All listings deleted successfully" });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+
 export const filterListing = async (req, res) => {
   try {
     const { projectType, location, minPrice, maxPrice, status } = req.query;

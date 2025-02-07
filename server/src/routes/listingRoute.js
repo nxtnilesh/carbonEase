@@ -5,6 +5,7 @@ import {
   getListingById,
   updateListing,
   deleteListing,
+  deleteAllListings,
   filterListings,
   getPostedListingForUser,
   makePayment,
@@ -35,5 +36,8 @@ router.put("/:id", updateListing);
 
 // ✅ Delete a carbon credit listing
 router.delete("/:id", deleteListing);
+
+// ✅ Delete all carbon credit listings
+router.delete("/", deleteAllListings);
 
 export default router; // Exporting the router
