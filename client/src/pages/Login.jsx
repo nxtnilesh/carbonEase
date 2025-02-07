@@ -28,7 +28,7 @@ const Login = () => {
       setTimeout(() => {
         navigate("/");
         window.location.reload();
-      }, 2000); // Redirect after 2 seconds
+      }, 2000);
     } catch (error) {
       setError("Invalid email or password. Please try again.");
       toast.error("Login failed. Please check your credentials.");
@@ -38,19 +38,19 @@ const Login = () => {
   };
 
   return (
-    <div className="max-w-3xl mx-auto mt-10 p-6 bg-white dark:bg-gray-900 rounded-2xl shadow-lg h-full my-8">
-      <div className="flex">
-        <div>
-          <img src={auth} alt="auth" width={300} />
+    <div className="flex items-center justify-center min-h-screen px-4">
+      <div className="bg-white dark:bg-gray-900 rounded-2xl shadow-lg p-6 w-full max-w-3xl flex flex-col md:flex-row gap-6">
+        {/* Left Side - Image */}
+        <div className="hidden md:flex justify-center items-center">
+          <img src={auth} alt="Authentication" className="w-80 h-auto object-cover" />
         </div>
-        <div className="flex-1 px-6">
-          <h1 className="text-2xl font-bold text-center text-brandMainColor mb-2">
-            Welcome Back!
-          </h1>
-          <p className="text-center text-gray-500 dark:text-gray-400 mb-6">
-            Login to your account to continue.
-          </p>
 
+        {/* Right Side - Login Form */}
+        <div className="flex-1 flex flex-col justify-center">
+          <h1 className="text-2xl font-bold text-center text-brandMainColor mb-2">Welcome Back!</h1>
+          <p className="text-center text-gray-500 dark:text-gray-400 mb-6">Login to your account to continue.</p>
+
+          {/* Error Alert */}
           {error && (
             <Alert variant="destructive" className="mb-4">
               <AlertTitle>Error</AlertTitle>
@@ -58,6 +58,7 @@ const Login = () => {
             </Alert>
           )}
 
+          {/* Input Fields */}
           <div className="space-y-4">
             <div className="relative">
               <Mail className="absolute left-3 top-3 w-5 h-5 text-gray-500" />
@@ -83,25 +84,19 @@ const Login = () => {
               />
             </div>
 
+            {/* Login Button */}
             <Button
               onClick={handleLogin}
               disabled={loading}
               className="w-full flex items-center justify-center"
             >
-              {loading ? (
-                <Loader2 className="animate-spin w-5 h-5 mr-2" />
-              ) : (
-                "Login"
-              )}
+              {loading ? <Loader2 className="animate-spin w-5 h-5 mr-2" /> : "Login"}
             </Button>
 
+            {/* Register Link */}
             <p className="text-sm text-center text-gray-600 dark:text-gray-400">
-              Don't have an account?
-              <Link
-                to="/register"
-                className="text-brandMainColor hover:underline"
-              >
-                {" "}
+              Don't have an account?{" "}
+              <Link to="/register" className="text-brandMainColor hover:underline">
                 Register
               </Link>
             </p>
