@@ -43,6 +43,7 @@ const Marketplace = () => {
     try {
       const response = await axios.get("http://localhost:3000/api/credits");
       setListings(response.data);
+      console.log("respone", response);
     } catch (err) {
       setError("Failed to load listings");
     }

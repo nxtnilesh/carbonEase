@@ -8,37 +8,64 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import { CheckCircle, Clock, TrendingUp, User } from "lucide-react";
 import { useAuth } from "@/context/AuthContext";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 
 const BuyerDashboard = () => {
   const { user, token } = useAuth();
-  console.log("UserData", user);
+  const [recentPurchases, setRecentPurchases] = useState([]);
+  const [totalAmount, setTotalAmount] = useState(0);
+  const [totalQuantity, setTotalQuantity] = useState(0);
+  
   useEffect(() => {
     const fetchListings = async () => {
       try {
-        // const response = await axios.get("http://localhost:3000/api/credits");
         const response = await axios.get(
           "http://localhost:3000/api/credits/payment-data",
           {
             headers: {
-              Authorization: `Bearer ${token}`, // Include Bearer token
+              Authorization: `Bearer ${token}`,
             },
           }
         );
-
-        console.log("Posted Data", response);
-        // setListings(response.data.posted);
+  
+        console.log("Posted Data", response.data.transactions);
+  
+        if (Array.isArray(response.data.transactions)) {
+          setRecentPurchases(response.data.transactions);
+  
+          // ✅ Calculate the total sum of the 'amount' key
+          const total = response.data.transactions.reduce(
+            (sum, transaction) => sum + (transaction.amount || 0),
+            0
+          );
+          setTotalAmount(total); // ✅ Update state with total amount
+        } else {
+          console.error("Invalid data format:", response.data);
+        }
+        
+        if (Array.isArray(response.data.transactions)) {
+          setRecentPurchases(response.data.transactions);
+  
+          // ✅ Calculate the total sum of the 'amount' key
+          const total = response.data.transactions.reduce(
+            (sum, transaction) => sum + (transaction.amount || 0),
+            0
+          );
+          setTotalAmount(total); // ✅ Update state with total amount
+        } else {
+          console.error("Invalid data format:", response.data);
+        }
       } catch (error) {
         console.error("Error fetching listings:", error);
       }
     };
-
+  
     fetchListings();
-  }, []);
+  }, [token]);
+  
   const overviewData = [
     {
       title: "Total Credits Purchased",
@@ -47,26 +74,13 @@ const BuyerDashboard = () => {
     },
     {
       title: "Total Spent",
-      value: user?.totalSpents || 0,
+      value: totalAmount || 0,
       icon: <CheckCircle size={24} />,
     },
-    { title: "Total Orders", value: user?.tranctions?.length || 0, icon: <Clock size={24} /> },
-  ];
-
-  const recentPurchases = [
     {
-      id: "ORD1234",
-      seller: "Green Energy Ltd.",
-      amount: "600",
-      price: "$3,000",
-      status: "Completed",
-    },
-    {
-      id: "ORD5678",
-      seller: "Eco Trust",
-      amount: "400",
-      price: "$2,000",
-      status: "Pending",
+      title: "Total Orders",
+      value: user?.transactions?.length || 0,
+      icon: <Clock size={24} />,
     },
   ];
 
@@ -86,7 +100,6 @@ const BuyerDashboard = () => {
       status: "Available",
     },
   ];
-
 
   return (
     <div className="p-6 grid grid-cols-1 md:grid-cols-4 gap-6">
@@ -120,60 +133,26 @@ const BuyerDashboard = () => {
                   <TableHead>Seller</TableHead>
                   <TableHead>Amount</TableHead>
                   <TableHead>Price</TableHead>
-                  <TableHead>Status</TableHead>
                 </TableRow>
               </TableHeader>
-              <TableBody>
-                {recentPurchases.map((order) => (
-                  <TableRow key={order.id}>
-                    <TableCell>{order.id}</TableCell>
-                    <TableCell>{order.seller}</TableCell>
-                    <TableCell>{order.amount} Credits</TableCell>
-                    <TableCell>{order.price}</TableCell>
-                    <TableCell>
-                      <Badge
-                        variant={
-                          order.status === "Completed" ? "success" : "warning"
-                        }
-                      >
-                        {order.status}
-                      </Badge>
-                    </TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </CardContent>
-        </Card>
 
-        {/* Available Listings */}
-        <Card>
-          <CardHeader>
-            <CardTitle>Available Listings</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead>ID</TableHead>
-                  <TableHead>Seller</TableHead>
-                  <TableHead>Credits</TableHead>
-                  <TableHead>Price</TableHead>
-                  <TableHead>Status</TableHead>
-                </TableRow>
-              </TableHeader>
               <TableBody>
-                {availableListings.map((listing) => (
-                  <TableRow key={listing.id}>
-                    <TableCell>{listing.id}</TableCell>
-                    <TableCell>{listing.seller}</TableCell>
-                    <TableCell>{listing.credits}</TableCell>
-                    <TableCell>{listing.price}</TableCell>
-                    <TableCell>
-                      <Badge variant="success">{listing.status}</Badge>
+                {recentPurchases.length > 0 ? (
+                  recentPurchases.map((order) => (
+                    <TableRow key={order._id}>
+                      <TableCell>{order._id}</TableCell>
+                      <TableCell>{order.sellerName}</TableCell>
+                      <TableCell>{order.amount} Credits</TableCell>
+                      <TableCell>{order.quantity}</TableCell>
+                    </TableRow>
+                  ))
+                ) : (
+                  <TableRow>
+                    <TableCell colSpan="4" className="text-center">
+                      No recent purchases found.
                     </TableCell>
                   </TableRow>
-                ))}
+                )}
               </TableBody>
             </Table>
           </CardContent>

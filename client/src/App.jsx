@@ -21,6 +21,7 @@ import BuyerDashboardLayout from "./pages/BuyerDashboard";
 import Marketplace from "./pages/BuyerPages/Marketplace";
 import ContactUs from "./pages/ContactUs";
 import TransactionPage from "./pages/Transaction/TransactionPage";
+import TransactionListing from "./pages/BuyerPages/TransactionListing";
 
 const App = () => {
   return (
@@ -55,6 +56,7 @@ const App = () => {
               <Route element={<ProtectedRoute />}>
                 <Route path="/payment" element={<TransactionPage />} />
                 <Route path="/buyer" element={<BuyerDashboardLayout />} />
+                <Route path="/transaction-listing" element={<TransactionListing />} />
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/seller" element={<SellerDashboardLayout />} />
               </Route>
