@@ -51,17 +51,17 @@ const notifications = [
 
 const Notification = ({ name, description, icon, color }) => {
   return (
-    <div className="width flex flex-col items-center p-6 bg-white dark:bg-gray-900 rounded-xl shadow-lg transition-all duration-200 hover:scale-105 ">
+    <div className="flex flex-col items-center p-6 bg-white dark:bg-gray-900 rounded-2xl shadow-md transition-all duration-200 hover:scale-105 text-center">
       <div
-        className="flex items-center justify-center w-14 h-14 rounded-full"
+        className="flex items-center justify-center w-16 h-16 rounded-full mb-4"
         style={{ backgroundColor: color }}
       >
         {icon}
       </div>
-      <h3 className="mt-4 text-lg font-semibold text-gray-800 dark:text-white text-center">
+      <h3 className="text-lg font-semibold text-gray-800 dark:text-white">
         {name}
       </h3>
-      <p className="mt-2 text-sm text-gray-600 dark:text-gray-300 text-center">
+      <p className="mt-2 text-sm text-gray-600 dark:text-gray-300">
         {description}
       </p>
     </div>
@@ -72,18 +72,18 @@ export function FeatureSection({ className }) {
   return (
     <section
       className={cn(
-        "relative w-full py-12 px-6 md:px-16 bg-background",
+        "relative w-full py-16 px-6 md:px-20 bg-background text-center",
         className
       )}
     >
-      <h1 className="text-3xl md:text-4xl font-semibold text-center text-green-600">
+      <h1 className="text-3xl md:text-4xl font-bold text-green-600">
         Why Choose CarbonEase?
       </h1>
-      <p className="mt-3 text-center text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+      <p className="mt-4 text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
         Explore key features that make our platform the best choice for sustainable and transparent carbon credit trading.
       </p>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-10">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 mt-12">
         {notifications.map((item, idx) => (
           <Notification {...item} key={idx} />
         ))}
