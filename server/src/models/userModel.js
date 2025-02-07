@@ -7,10 +7,12 @@ const userSchema = new mongoose.Schema({
   password: { type: String, required: true },
   totalCredits: { type: Number, default: 0 },
   totalSpents: { type: Number, default: 0 },
-  posted: [{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "CarbonCredit",
-  }],
+  posted: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "CarbonCredit",
+    },
+  ],
   seen: [
     {
       type: mongoose.Schema.Types.ObjectId,
@@ -19,20 +21,8 @@ const userSchema = new mongoose.Schema({
   ],
   transactions: [
     {
-      carbonCredit: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "CarbonCredit",
-        required: true,
-      },
-      amount: { type: Number, required: true },
-      purchaseDate: { type: Date, default: Date.now },
-      quantity: { type: Number, required: true },
-      sellerName: { type: String, required: true },
-      status: {
-        type: String,
-        enum: ["Pending", "Completed", "Failed"],
-        default: "Pending",
-      },
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Transaction",
     },
   ],
   isVerified: { type: Boolean, default: false },

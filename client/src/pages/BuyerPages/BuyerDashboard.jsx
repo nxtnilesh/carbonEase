@@ -11,11 +11,34 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { CheckCircle, Clock, TrendingUp, User } from "lucide-react";
 import { useAuth } from "@/context/AuthContext";
+import { useEffect } from "react";
+import axios from "axios";
 
 const BuyerDashboard = () => {
-  const { user, logoutUser } = useAuth();
+  const { user, token } = useAuth();
   console.log("UserData", user);
-  
+  useEffect(() => {
+    const fetchListings = async () => {
+      try {
+        // const response = await axios.get("http://localhost:3000/api/credits");
+        const response = await axios.get(
+          "http://localhost:3000/api/credits/payment-data",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`, // Include Bearer token
+            },
+          }
+        );
+
+        console.log("Posted Data", response);
+        // setListings(response.data.posted);
+      } catch (error) {
+        console.error("Error fetching listings:", error);
+      }
+    };
+
+    fetchListings();
+  }, []);
   const overviewData = [
     {
       title: "Total Credits Purchased",

@@ -77,3 +77,4 @@ export const profile = async (req, res) => {
     logger.error(error, "profile");
   }
 };
+

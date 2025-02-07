@@ -49,11 +49,11 @@ const App = () => {
                 <Route path="/coming" element={<ComingSoon />} />
                 <Route path="/market" element={<Marketplace />} />
                 <Route path="/contact" element={<ContactUs />} />
-                <Route path="/payment" element={<TransactionPage />} />
               </Route>
 
               {/* Protected Routes */}
               <Route element={<ProtectedRoute />}>
+                <Route path="/payment" element={<TransactionPage />} />
                 <Route path="/buyer" element={<BuyerDashboardLayout />} />
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/seller" element={<SellerDashboardLayout />} />

@@ -7,6 +7,8 @@ import {
   deleteListing,
   filterListings,
   getPostedListingForUser,
+  makePayment,
+  getTransactionData,
 } from "../controllers/listingController.js";
 
 import authMiddleware from "../middlewares/authMiddleware.js";
@@ -16,6 +18,8 @@ const router = express.Router();
 // ✅ Create a new carbon credit listing
 router.post("/post", authMiddleware, createListing);
 router.get("/posted-data", authMiddleware, getPostedListingForUser);
+router.post("/payment", authMiddleware, makePayment);
+router.get("/payment-data", authMiddleware, getTransactionData);
 
 // ✅ Get all carbon credit listings
 router.get("/", getListings);

@@ -1,4 +1,5 @@
 import CarbonCredit from "../models/Listing.js"; // Import model
+import transactionsModel from "../models/transactionsModel.js";
 import userModel from "../models/userModel.js";
 import logger from "../utils/logger.js";
 
@@ -138,5 +139,43 @@ export const getPostedListingForUser = async (req, res) => {
     return res.status(200).json(postedDataByUser);
   } catch (error) {
     logger.error("Get posted data", error);
+  }
+};
+
+export const getTransactionData = async (req, res) => {
+  try {
+    const userId = req.user.userId;
+    const postedDataByUser = await userModel
+      .findById(userId)
+      .populate({
+        path: "transactions",
+      })
+      .select("transactions");
+
+    return res.status(200).json(postedDataByUser);
+  } catch (error) {
+    logger.error("Get posted data", error);
+  }
+};
+
+export const makePayment = async (req, res) => {
+  try {
+    const userId = req.user.userId;
+    const { amount, quantity, sellerName } = req.body;
+    console.log("amount", amount, quantity, sellerName);
+    const data = new transactionsModel({
+      amount,
+      quantity,
+      sellerName: userId,
+    });
+    await data.save();
+    const updatedUser = await userModel.findByIdAndUpdate(
+      userId,
+      { $push: { transactions: data._id } },
+      { new: true, runValidators: true }
+    );
+    return res.status(200).json(data);
+  } catch (error) {
+    logger.info("Error in makePayment", error);
   }
 };
