@@ -14,9 +14,9 @@ import { useState } from "react";
 const navigation = [
   { name: "Dashboard Overview", href: "/seller-dashboard", icon: BarChart3 },
   { name: "Manage Listings", href: "/listings", icon: ListChecks },
-  { name: "Orders & Transactions", href: "/coming", icon: ShoppingCart },
-  { name: "Earnings & Payouts", href: "/coming", icon: DollarSign },
-  { name: "Messages & Notifications", href: "/coming", icon: MessageSquare },
+  { name: "Orders & Transactions", href: "/transaction-listing", icon: ShoppingCart },
+  // { name: "Earnings & Payouts", href: "/coming", icon: DollarSign },
+  // { name: "Messages & Notifications", href: "/coming", icon: MessageSquare },
 ];
 
 export function SellerSidebar() {

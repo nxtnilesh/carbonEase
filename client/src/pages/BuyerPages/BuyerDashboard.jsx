@@ -116,7 +116,7 @@ const BuyerDashboard = () => {
           </CardHeader>
           <CardContent>
             <Table>
-              <TableHeader>
+              <TableHeader className="bg-slate-100">
                 <TableRow>
                   {/* <TableHead>ID</TableHead> */}
                   <TableHead>Seller</TableHead>

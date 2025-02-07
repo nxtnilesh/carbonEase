@@ -8,61 +8,82 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import { CheckCircle, Clock, TrendingUp, User } from "lucide-react";
 import { useAuth } from "@/context/AuthContext";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { NumberTicker } from "@/components/magicui/number-ticker";
 
 const SellerDashboard = () => {
-  const { user, logoutUser } = useAuth();
+  const { user, token } = useAuth();
+  const [recentPurchases, setRecentPurchases] = useState([]);
+  const [totalAmount, setTotalAmount] = useState(0);
+  const [totalQuantity, setTotalQuantity] = useState(0);
+
+  useEffect(() => {
+    const fetchListings = async () => {
+      try {
+        const response = await axios.get(
+          "http://localhost:3000/api/credits/payment-data",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+
+        console.log("Posted Data", response.data.transactions);
+
+        if (Array.isArray(response.data.transactions)) {
+          setRecentPurchases(response.data.transactions);
+
+          // ✅ Calculate the total sum of the 'amount' key
+          const total = response.data.transactions.reduce(
+            (sum, transaction) => sum + (transaction.amount || 0),
+            0
+          );
+          setTotalAmount(total); // ✅ Update state with total amount
+        } else {
+          console.error("Invalid data format:", response.data);
+        }
+
+        if (Array.isArray(response.data.transactions)) {
+          setRecentPurchases(response.data.transactions);
+
+          // ✅ Calculate the total sum of the 'amount' key
+          const total = response.data.transactions.reduce(
+            (sum, transaction) => sum + (transaction.amount || 0),
+            0
+          );
+          setTotalAmount(total); // ✅ Update state with total amount
+        } else {
+          console.error("Invalid data format:", response.data);
+        }
+      } catch (error) {
+        console.error("Error fetching listings:", error);
+      }
+    };
+
+    fetchListings();
+  }, [token]);
 
   const overviewData = [
     {
       title: "Total Credits Purchased",
-      value: user?.totalCredits,
+      value: 20,
       icon: <TrendingUp size={24} />,
     },
     {
       title: "Total Spent",
-      value: user?.totalSpents || 0,
+      value: totalAmount || 0,
       icon: <CheckCircle size={24} />,
     },
     {
       title: "Total Orders",
-      value: user?.tranctions?.length || 0,
+      value: user?.transactions?.length || 0,
       icon: <Clock size={24} />,
     },
   ];
-  const recentTransactions = [
-    {
-      id: "TXN1234",
-      buyer: "Green Corp",
-      amount: "500",
-      price: "$2,500",
-      status: "Completed",
-    },
-    {
-      id: "TXN5678",
-      buyer: "Eco Trust",
-      amount: "300",
-      price: "$1,500",
-      status: "Pending",
-    },
-  ];
-
-  const activeListings = [
-    { id: "LIST001", credits: "1000", price: "$5,000", status: "Active" },
-    { id: "LIST002", credits: "750", price: "$3,750", status: "Active" },
-  ];
-
-  // User Profile Data
-  // const user = {
-  //   name: "John Doe",
-  //   email: "johndoe@example.com",
-  //   profilePicture: "/path/to/profile-picture.jpg", // Example path for profile picture
-  //   location: "New York, USA",
-  //   totalCredits: "3,500",
-  //   totalEarnings: "$18,000",
-  // };
 
   return (
     <div className="p-6 grid grid-cols-1 md:grid-cols-4 gap-6">
@@ -77,85 +98,49 @@ const SellerDashboard = () => {
                 <CardTitle className="text-center">{item.title}</CardTitle>
               </CardHeader>
               <CardContent className="text-2xl font-bold">
-                {item.value}
+                {/* {item.value} */}
+                <NumberTicker
+                  value={item.value || 0}
+                  className="whitespace-pre-wrap text-6xl font-medium tracking-tighter text-black dark:text-white"
+                />
               </CardContent>
             </Card>
           ))}
         </div>
 
-        {/* Recent Transactions */}
+        {/* Recent Purchases */}
         <Card>
           <CardHeader>
-            <CardTitle>Recent Transactions</CardTitle>
+            <CardTitle>Recent Transaction</CardTitle>
           </CardHeader>
           <CardContent>
             <Table>
-              <TableHeader>
+              <TableHeader className="bg-slate-100">
                 <TableRow>
-                  <TableHead>ID</TableHead>
-                  <TableHead>Buyer</TableHead>
+                  {/* <TableHead>ID</TableHead> */}
+                  <TableHead>Seller</TableHead>
                   <TableHead>Amount</TableHead>
                   <TableHead>Price</TableHead>
-                  <TableHead>Status</TableHead>
                 </TableRow>
               </TableHeader>
-              <TableBody>
-                {recentTransactions.map((txn) => (
-                  <TableRow key={txn.id}>
-                    <TableCell>{txn.id}</TableCell>
-                    <TableCell>{txn.buyer}</TableCell>
-                    <TableCell>{txn.amount} Credits</TableCell>
-                    <TableCell>{txn.price}</TableCell>
-                    <TableCell>
-                      <Badge
-                        variant={
-                          txn.status !== "Pending" ? "success" : "destructive"
-                        }
-                      >
-                        {txn.status}
-                      </Badge>
-                    </TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </CardContent>
-        </Card>
 
-        {/* Active Listings */}
-        <Card>
-          <CardHeader>
-            <CardTitle>Active Listings</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead>ID</TableHead>
-                  <TableHead>Credits</TableHead>
-                  <TableHead>Price</TableHead>
-                  <TableHead>Status</TableHead>
-                </TableRow>
-              </TableHeader>
               <TableBody>
-                {activeListings.map((listing) => (
-                  <TableRow key={listing.id}>
-                    <TableCell>{listing.id}</TableCell>
-                    <TableCell>{listing.credits}</TableCell>
-                    <TableCell>{listing.price}</TableCell>
-                    <TableCell>
-                      <Badge
-                        variant={
-                          listing.status !== "Pending"
-                            ? "success"
-                            : "destructive"
-                        }
-                      >
-                        {listing.status}
-                      </Badge>
+                {recentPurchases.length > 0 ? (
+                  recentPurchases.map((order) => (
+                    <TableRow key={order._id}>
+                      {/* <TableCell>{order._id}</TableCell> */}
+                      <TableCell>{order.sellerName}</TableCell>
+                      <TableCell>{order.amount} Credits</TableCell>
+                      <TableCell>{order.quantity}</TableCell>
+                    </TableRow>
+                  ))
+                ) : (
+                  <TableRow>
+                    <TableCell colSpan="4" className="text-center">
+                      No recent purchases found.
                     </TableCell>
                   </TableRow>
-                ))}
+                )}
               </TableBody>
             </Table>
           </CardContent>
@@ -174,10 +159,9 @@ const SellerDashboard = () => {
           <CardContent>
             <div className="text-gray-600">
               <p>{user.email}</p>
-              <p>Total Credits: {user?.totalCredits || 0}</p>
             </div>
           </CardContent>
-          <Button className="mt-4 bg-green-500">Edit Profile</Button>
+          {/* <Button className="mt-4 bg-green-500">Edit Profile</Button> */}
         </Card>
       </div>
     </div>
