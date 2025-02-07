@@ -25,12 +25,16 @@ import {
   CheckCircle,
   ShieldCheck,
   Link as LinkIcon,
+  Upload,
 } from "lucide-react";
 import { toast } from "@/hooks/use-toast";
 import { useAuth } from "@/context/AuthContext";
+import CurrencyDropdown from "@/components/common/CurrencyDropdown";
+import FileUpload from "@/components/common/FileUpload";
 
 const FormComponent = ({ isOpen, setIsOpen }) => {
-  const { user } = useAuth();
+  const { auth, token } = useAuth();
+
   const [formData, setFormData] = useState({
     title: "",
     description: "",
@@ -88,7 +92,16 @@ const FormComponent = ({ isOpen, setIsOpen }) => {
         },
       };
 
-      await axios.post("http://localhost:3000/api/credits/post", payload);
+      const response = await axios.post(
+        "http://localhost:3000/api/credits/post",
+        payload,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`, // Include Bearer token
+            "Content-Type": "application/json",
+          },
+        }
+      );
       toast({ title: "Listing created successfully!" });
       setFormData({
         title: "",
@@ -107,13 +120,13 @@ const FormComponent = ({ isOpen, setIsOpen }) => {
       setIsOpen(!open);
     } catch (error) {
       console.error("Error creating listing:", error);
-      alert("Error: " + (error.response?.data?.message || error.message));
+      // alert("Error: " + (error.response?.data?.message || error.message));
     }
   };
 
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
-      <DialogContent className="max-w-2xl">
+      <DialogContent className="max-w-2xl max-h-[500px] overflow-scroll">
         <DialogHeader>
           <DialogTitle className="text-xl font-semibold">
             Create a New Listing
@@ -174,8 +187,8 @@ const FormComponent = ({ isOpen, setIsOpen }) => {
           {/* Price per Credit */}
           <div className="grid gap-1">
             <Label htmlFor="pricePerCredit">Price per Credit</Label>
-            <div className="relative">
-              <DollarSign className="absolute left-3 top-3 text-gray-500" />
+            <div className="relative flex">
+              <CurrencyDropdown />
               <Input
                 id="pricePerCredit"
                 name="pricePerCredit"
@@ -221,7 +234,10 @@ const FormComponent = ({ isOpen, setIsOpen }) => {
             </div>
           </div>
 
+          {/* File handler */}
+          <FileUpload />
           {/* Project Type */}
+
           <div className="grid gap-1">
             <Label>Project Type</Label>
             <Select

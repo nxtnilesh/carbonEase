@@ -8,12 +8,12 @@ import {
   filterListings,
 } from "../controllers/listingController.js";
 
-// import authMiddleware from "../middlewares/authMiddleware.js";
+import authMiddleware from "../middlewares/authMiddleware.js";
 
 const router = express.Router();
 
 // ✅ Create a new carbon credit listing
-router.post("/post", createListing);
+router.post("/post",authMiddleware, createListing);
 
 // ✅ Get all carbon credit listings
 router.get("/", getListings);

@@ -1,10 +1,19 @@
 import CarbonCredit from "../models/Listing.js"; // Import model
+import userModel from "../models/userModel.js";
 
 // ✅ Create a new listing
 export const createListing = async (req, res) => {
   try {
+    const userId = req.user.userId;
+    console.log("Log", userId);
+
     const newListing = new CarbonCredit(req.body);
-    await newListing.save();
+    const listingData = await newListing.save();
+    const updatedUser = await userModel.findByIdAndUpdate(
+      userId,
+      { $push: { posted: listingData._id } },
+      { new: true, runValidators: true }
+    );
     res.status(201).json(newListing);
   } catch (error) {
     res.status(400).json({ error: error.message });
