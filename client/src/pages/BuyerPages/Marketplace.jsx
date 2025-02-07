@@ -147,7 +147,7 @@ const Marketplace = () => {
                     {listing.location}
                   </p>
                   <p className="text-sm text-gray-600 flex items-center gap-1">
-                    <DollarSign size={16} className="text-green-500" /> $
+                    <DollarSign size={16} className="text-green-500" />
                     {listing.pricePerCredit}/credit
                   </p>
                   <p className="text-sm text-gray-600">

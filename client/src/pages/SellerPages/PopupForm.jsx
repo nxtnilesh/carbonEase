@@ -234,6 +234,16 @@ const FormComponent = ({ isOpen, setIsOpen }) => {
             </div>
           </div>
 
+          <Select onValueChange={(value) => handleVerificationChange({ target: { name: "verifiedBy", value } })}>
+            <SelectTrigger>{formData.verification.verifiedBy || "Select Verification"}</SelectTrigger>
+            <SelectContent>
+              <SelectItem value="VCS">VCS</SelectItem>
+              <SelectItem value="Gold Standard">Gold Standard</SelectItem>
+              <SelectItem value="CDM">CDM</SelectItem>
+              <SelectItem value="Others">Others</SelectItem>
+            </SelectContent>
+          </Select>
+
           {/* File handler */}
           <FileUpload />
           {/* Project Type */}
