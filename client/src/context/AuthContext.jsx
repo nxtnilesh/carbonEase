@@ -10,6 +10,8 @@ export const AuthProvider = ({ children }) => {
     const fetchUser = async () => {
       try {
         const { data } = await getProfile();
+        console.log("data", data);
+        
         setUser(data.user);
       } catch {
         logoutUser();

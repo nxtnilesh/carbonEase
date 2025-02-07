@@ -71,7 +71,9 @@ export const login = async (req, res) => {
 
 export const profile = async (req, res) => {
   try {
-    console.log("Auth user", req.user);
+    // const user
+    // console.log("Auth user", req.user);
+    const userDetails = await UserDetails.findOne({ email})
     return res.json({ user: req.user });
   } catch (error) {
     logger.error(error, "profile");
