@@ -8,8 +8,8 @@ const navigation = [
   { name: "Browse Marketplace", href: "/market", icon: ListChecks },
   { name: "Emission Calculator", href: "/calculator", icon: PlusCircle },
   { name: "Orders & Transactions", href: "/transaction-listing", icon: ShoppingCart },
-  { name: "Certifications and Rewards", href: "/coming", icon: DollarSign },
-  { name: "Messages & Notifications", href: "/coming", icon: MessageSquare },
+  // { name: "Certifications and Rewards", href: "/coming", icon: DollarSign },
+  // { name: "Messages & Notifications", href: "/coming", icon: MessageSquare },
   // { name: "Profile & Settings", href: "/coming", icon: Settings },
 ];
 

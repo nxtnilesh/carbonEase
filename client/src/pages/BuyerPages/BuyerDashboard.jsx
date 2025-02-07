@@ -102,7 +102,7 @@ const BuyerDashboard = () => {
                 {/* {item.value} */}
                 <NumberTicker
                   value={item.value || 0}
-                  className="whitespace-pre-wrap text-8xl font-medium tracking-tighter text-black dark:text-white"
+                  className="whitespace-pre-wrap text-6xl font-medium tracking-tighter text-black dark:text-white"
                 />
               </CardContent>
             </Card>
@@ -118,7 +118,7 @@ const BuyerDashboard = () => {
             <Table>
               <TableHeader>
                 <TableRow>
-                  <TableHead>ID</TableHead>
+                  {/* <TableHead>ID</TableHead> */}
                   <TableHead>Seller</TableHead>
                   <TableHead>Amount</TableHead>
                   <TableHead>Price</TableHead>
@@ -129,7 +129,7 @@ const BuyerDashboard = () => {
                 {recentPurchases.length > 0 ? (
                   recentPurchases.map((order) => (
                     <TableRow key={order._id}>
-                      <TableCell>{order._id}</TableCell>
+                      {/* <TableCell>{order._id}</TableCell> */}
                       <TableCell>{order.sellerName}</TableCell>
                       <TableCell>{order.amount} Credits</TableCell>
                       <TableCell>{order.quantity}</TableCell>
@@ -160,10 +160,9 @@ const BuyerDashboard = () => {
           <CardContent>
             <div className="text-gray-600">
               <p>{user.email}</p>
-              <p>Total Credits: {user?.totalCredits || 0}</p>
             </div>
           </CardContent>
-          <Button className="mt-4 bg-green-500">Edit Profile</Button>
+          {/* <Button className="mt-4 bg-green-500">Edit Profile</Button> */}
         </Card>
       </div>
     </div>

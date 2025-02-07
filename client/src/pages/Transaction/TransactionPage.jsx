@@ -12,7 +12,14 @@ import axios from "axios";
 
 const TransactionPage = () => {
   const { token } = useAuth();
-  const [id] = useSearchParams();
+  const [searchParams] = useSearchParams();
+  const id = searchParams.get("id");
+  const amount = searchParams.get("amount");
+  const title = searchParams.get("title");
+  const totalPrice = searchParams.get("totalPrice");
+
+  console.log("Payment Data:", { id, amount, title, totalPrice });
+
   const navigate = useNavigate();
   const [paymentMethod, setPaymentMethod] = useState("card");
   const [formData, setFormData] = useState({
@@ -29,9 +36,9 @@ const TransactionPage = () => {
   const handlePayment = async () => {
     try {
       const payload = {
-        amount: 20,
-        quantity: 2,
-        sellerName: token,
+        amount: totalPrice,
+        quantity: amount,
+        sellerName: title,
       };
 
       const response = await axios.post(

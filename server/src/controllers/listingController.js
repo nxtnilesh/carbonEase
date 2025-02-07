@@ -166,7 +166,8 @@ export const makePayment = async (req, res) => {
     const data = new transactionsModel({
       amount,
       quantity,
-      sellerName: userId,
+      userId: userId,
+      sellerName,
     });
     await data.save();
     const updatedUser = await userModel.findByIdAndUpdate(

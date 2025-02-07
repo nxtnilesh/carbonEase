@@ -163,7 +163,15 @@ const Marketplace = () => {
                   </Button>
                   <Button
                     className="bg-green-500 flex items-center gap-2"
-                    onClick={() => navigate(`/payment?id=${listing._id}`)}
+                    onClick={() =>
+                      navigate(
+                        `/payment?id=${listing._id}&amount=${
+                          listing.pricePerCredit
+                        }&title=${encodeURIComponent(
+                          listing.title
+                        )}&totalPrice=${listing.totalPrice}`
+                      )
+                    }
                   >
                     <ShoppingCart size={16} /> Buy
                   </Button>

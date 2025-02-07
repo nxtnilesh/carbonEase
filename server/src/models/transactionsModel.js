@@ -9,7 +9,8 @@ const transactionSchema = new mongoose.Schema({
   amount: { type: Number, required: true },
   purchaseDate: { type: Date, default: Date.now },
   quantity: { type: Number, required: true },
-  sellerName: {
+  sellerName: { type: String },
+  userId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
     // required: true,
